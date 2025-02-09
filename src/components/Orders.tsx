@@ -1,9 +1,10 @@
 import { Button, Container, Paper, Typography } from "@mui/material";
-import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Grid from "@mui/material/Grid2";
+import AddOrderDetails from "./orders/AddOrderDetails";
 
 interface Column {
   id: "customer_name" | "quantities_sold" | "sold_price";
@@ -26,6 +27,7 @@ const columns: GridColDef[] = [
 const Orders = () => {
   const [ordersData, setOrdersData] = useState([]);
   const [totalSold, setTotalSold] = useState(0);
+  const [openAddOrderDialog, setOpenAddOrderDialog] = useState(false);
 
   const rows: any = [];
   useEffect(() => {
@@ -41,6 +43,14 @@ const Orders = () => {
         setTotalSold(totalSoldCost);
       });
   }, []);
+
+  const closeOrderDetailsDialog = () => {
+    setOpenAddOrderDialog(false);
+  };
+
+  const addNewOrder = () => {
+    setOpenAddOrderDialog(true);
+  };
   return (
     <Container
       sx={{
@@ -86,7 +96,9 @@ const Orders = () => {
             </Typography>
           </Grid>
           <Grid size={6} display={"flex"} justifyContent={"flex-end"}>
-            <Button variant="outlined">Add</Button>
+            <Button variant="outlined" onClick={addNewOrder}>
+              Add
+            </Button>
           </Grid>
 
           <Grid size={12}>
@@ -105,6 +117,10 @@ const Orders = () => {
             />
           </Grid>
         </Grid>
+        <AddOrderDetails
+          open={openAddOrderDialog}
+          closeCallBack={closeOrderDetailsDialog}
+        />
       </Paper>
     </Container>
   );
