@@ -1,4 +1,10 @@
-import { TextField } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -6,16 +12,32 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Grid from "@mui/material/Grid2";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 interface IAddOrderDetails {
   open: boolean;
   closeCallBack: () => void;
 }
 
+interface IProduct {
+  _id: string;
+  title: string;
+  price_USA: string;
+  weight: number;
+  sku: string;
+}
+
 export default function AddOrderDetails({
   open,
   closeCallBack,
 }: IAddOrderDetails) {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    axios.get("https://knk-two.vercel.app/api/getproducts").then(({ data }) => {
+      setProducts(data);
+    });
+  }, []);
   const handleClose = () => {
     closeCallBack();
   };
@@ -49,6 +71,19 @@ export default function AddOrderDetails({
                 label="Sold Price"
                 name="soldPrice"
               ></TextField>
+            </Grid>
+            <Grid size={12}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Product</InputLabel>
+                <Select fullWidth label="Product">
+                  {products.map((product: IProduct) => (
+                    <MenuItem value={product.sku} key={product.sku}>
+                      {product.title}
+                    </MenuItem>
+                  ))}
+                  <MenuItem value={"sample"}>sample</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
           </Grid>
         </DialogContentText>

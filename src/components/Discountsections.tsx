@@ -27,7 +27,6 @@ const Discountsection = () => {
             Best Sellers
           </Typography>
         </Grid>
-        <Orders />
       </Grid>
     </Box>
   );
