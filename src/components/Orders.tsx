@@ -16,10 +16,10 @@ interface Column {
 
 const columns: GridColDef[] = [
   { field: "customer_name", headerName: "Customer Name", flex: 1 },
-  { field: "quantities_sold", headerName: "Quantities Sold", flex: 1 },
+  { field: "quantities_sold", headerName: "# Sold", flex: 1 },
   {
     field: "sold_price",
-    headerName: "Sold Price",
+    headerName: "Price",
     flex: 1,
     valueFormatter: (value) => `$${value}`,
   },
