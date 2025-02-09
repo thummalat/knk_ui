@@ -25,7 +25,7 @@ export default function AddOrderDetails({
       <DialogTitle>Order Details</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Enter new order details below
+          Enter new order details
           <Grid container spacing={2} sx={{ paddingTop: "1rem" }}>
             <Grid size={12}>
               <TextField
