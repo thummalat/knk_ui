@@ -81,7 +81,6 @@ export default function AddOrderDetails({
                       {product.title}
                     </MenuItem>
                   ))}
-                  <MenuItem value={"sample"}>sample</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
