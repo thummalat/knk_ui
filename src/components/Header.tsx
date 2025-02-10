@@ -13,7 +13,6 @@ const Header = () => {
               color: "#E8B923",
               flexGrow: 1,
               textAlign: "center",
-              // display: { xs: "none", sm: "block" },
             }}
           >
             KAANUKA

@@ -1,18 +1,22 @@
 import { Button, Container, Paper, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { useFetchProducts } from "../hooks/useFetchProducts";
 
 const columns: GridColDef[] = [
-  { field: "name", headerName: "Name", flex: 1 },
+  { field: "title", headerName: "Name", flex: 1 },
   { field: "weight", headerName: "Weight", flex: 1 },
   {
-    field: "quantity",
-    headerName: "Quantity",
+    field: "price_USA",
+    headerName: "Price",
     flex: 1,
+    valueFormatter: (value) => `$${value}`,
   },
 ];
 
 const InventoryDetails = () => {
+  const { isLoading, data: productsData } = useFetchProducts();
+
   return (
     <Container
       sx={{
@@ -67,7 +71,7 @@ const InventoryDetails = () => {
                 },
               }}
               pageSizeOptions={[10]}
-              rows={[]}
+              rows={productsData}
               columns={columns}
             />
           </Grid>
