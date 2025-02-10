@@ -1,18 +1,9 @@
 import { Button, Container, Paper, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import Grid from "@mui/material/Grid2";
 import AddOrderDetails from "./orders/AddOrderDetails";
-
-interface Column {
-  id: "customer_name" | "quantities_sold" | "sold_price";
-  label: string;
-  minWidth?: number;
-  align?: "right";
-  format?: (value: number) => string;
-}
+import { useFetchOrders } from "../hooks/useFetchOrders";
 
 const columns: GridColDef[] = [
   { field: "customer_name", headerName: "Customer Name", flex: 1 },
@@ -25,24 +16,8 @@ const columns: GridColDef[] = [
   },
 ];
 const Orders = () => {
-  const [ordersData, setOrdersData] = useState([]);
-  const [totalSold, setTotalSold] = useState(0);
   const [openAddOrderDialog, setOpenAddOrderDialog] = useState(false);
-
-  const rows: any = [];
-  useEffect(() => {
-    axios
-      .get("https://knk-two.vercel.app/api/getallorders")
-      .then(({ data }) => {
-        const { totalSoldCost, soldProductDetails } = data;
-        const rows = soldProductDetails.map((product: any) => ({
-          id: product._id,
-          ...product,
-        }));
-        setOrdersData(rows);
-        setTotalSold(totalSoldCost);
-      });
-  }, []);
+  const { data: ordersData, isLoading } = useFetchOrders();
 
   const closeOrderDetailsDialog = () => {
     setOpenAddOrderDialog(false);
@@ -92,7 +67,7 @@ const Orders = () => {
                 marginBlock: "1rem",
               }}
             >
-              Total Sold : {`$${totalSold}`}
+              Total Sold : {`$${ordersData?.totalSoldCost}`}
             </Typography>
           </Grid>
           <Grid size={6} display={"flex"} justifyContent={"flex-end"}>
@@ -112,7 +87,7 @@ const Orders = () => {
                 },
               }}
               pageSizeOptions={[10]}
-              rows={ordersData}
+              rows={ordersData?.soldProductDetails}
               columns={columns}
             />
           </Grid>
