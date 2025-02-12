@@ -49,7 +49,7 @@ const InventoryDetails = () => {
   return (
     <Container
       sx={{
-        maxHeight: "95vh",
+        maxHeight: "90vh",
         paddingBottom: "1rem",
         overflow: "auto",
       }}
@@ -60,7 +60,7 @@ const InventoryDetails = () => {
           spacing={0}
           sx={{
             alignItems: "center",
-            maxHeight: "87vh",
+            maxHeight: "80vh",
             overflow: "auto",
             padding: "1rem",
             paddingTop: 0,
