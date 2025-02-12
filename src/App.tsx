@@ -8,7 +8,7 @@ const App = () => {
     <>
       <CssBaseline />
       <Header />
-      <Orders />
+      {/* <Orders /> */}
       <InventoryDetails />
     </>
   );
