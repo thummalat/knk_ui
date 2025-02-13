@@ -29,7 +29,7 @@ const Orders = () => {
   return (
     <Container
       sx={{
-        maxHeight: "70vh",
+        maxHeight: "80vh",
         paddingBottom: "1rem",
         overflow: "auto",
       }}
@@ -40,7 +40,7 @@ const Orders = () => {
           spacing={0}
           sx={{
             alignItems: "center",
-            maxHeight: "65vh",
+            maxHeight: "70vh",
             overflow: "auto",
             padding: "1rem",
             paddingTop: 0,

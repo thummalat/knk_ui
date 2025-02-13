@@ -1,5 +1,7 @@
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 
+import { Link } from "react-router-dom";
+
 const Header = () => {
   const navItems = ["Brass Items", "Fancy Items", "Gifting"];
   return (
@@ -12,11 +14,31 @@ const Header = () => {
             sx={{
               color: "#E8B923",
               flexGrow: 1,
-              textAlign: "center",
             }}
           >
             KAANUKA
           </Typography>
+
+          <Button
+            component={Link}
+            to="/"
+            sx={{
+              color: "#E8B923",
+              borderRadius: 0,
+            }}
+          >
+            Home
+          </Button>
+          <Button
+            component={Link}
+            to="/orders"
+            sx={{
+              color: "#E8B923",
+              borderRadius: 0,
+            }}
+          >
+            orders
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>
