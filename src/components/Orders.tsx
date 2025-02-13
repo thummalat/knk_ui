@@ -1,4 +1,4 @@
-import { Button, Container, Paper, Typography } from "@mui/material";
+import { Button, Container, Link, Paper, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid2";
@@ -44,6 +44,14 @@ const Orders = () => {
         ? { flex: 1 } // Use flex for large screens
         : { width: 120 }), // Use fixed width for other screens
       valueFormatter: (value) => `$${value}`,
+    },
+    {
+      field: "actions",
+      headerName: "Actions",
+      ...(isLargeScreen
+        ? { flex: 1 } // Use flex for large screens
+        : { width: 150 }), // Use fixed width for other screens
+      renderCell: () => <Link>View Details</Link>,
     },
   ];
 
