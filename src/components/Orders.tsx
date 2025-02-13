@@ -29,9 +29,7 @@ const Orders = () => {
   return (
     <Container
       sx={{
-        maxHeight: "92%",
         paddingBottom: "1rem",
-        overflow: "auto",
       }}
     >
       <Paper elevation={3} sx={{ marginTop: "1rem", background: "#e8b9240f" }}>

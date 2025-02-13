@@ -49,9 +49,7 @@ const InventoryDetails = () => {
   return (
     <Container
       sx={{
-        maxHeight: "80vh",
         paddingBottom: "1rem",
-        overflow: "auto",
       }}
     >
       <Paper elevation={3} sx={{ marginTop: "1rem", background: "#e8b9240f" }}>
@@ -60,10 +58,7 @@ const InventoryDetails = () => {
           spacing={0}
           sx={{
             alignItems: "center",
-            maxHeight: "70vh",
-            overflow: "auto",
             padding: "1rem",
-            paddingTop: 0,
           }}
         >
           <Grid size={12}>
