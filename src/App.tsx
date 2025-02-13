@@ -8,14 +8,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <CssBaseline />
-
       <Header />
       <Routes>
         <Route path="/" element={<InventoryDetails />}></Route>
         <Route path="/orders" element={<Orders />}></Route>
       </Routes>
-
-      {/* <Orders /> */}
     </BrowserRouter>
   );
 };

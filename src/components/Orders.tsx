@@ -1,23 +1,51 @@
 import { Button, Container, Paper, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid2";
 import AddOrderDetails from "./orders/AddOrderDetails";
 import { useFetchOrders } from "../hooks/useFetchOrders";
 
-const columns: GridColDef[] = [
-  { field: "customer_name", headerName: "Customer Name", flex: 1 },
-  { field: "quantities_sold", headerName: "# Sold", flex: 1 },
-  {
-    field: "sold_price",
-    headerName: "Price",
-    flex: 1,
-    valueFormatter: (value) => `$${value}`,
-  },
-];
 const Orders = () => {
   const [openAddOrderDialog, setOpenAddOrderDialog] = useState(false);
   const { data: ordersData, isLoading } = useFetchOrders();
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+  // Function to determine if the screen is large
+  const checkScreenSize = () => {
+    const width = window.innerWidth;
+    setIsLargeScreen(width >= 960); // 960px is the breakpoint for "lg"
+  };
+
+  // Update screen size on window resize
+  useEffect(() => {
+    checkScreenSize(); // Check initial screen size
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  const columns: GridColDef[] = [
+    {
+      field: "customer_name",
+      headerName: "Customer Name",
+      ...(isLargeScreen
+        ? { flex: 1 } // Use flex for large screens
+        : { width: 200 }), // Use fixed width for other screens
+    },
+    {
+      field: "quantities_sold",
+      headerName: "# Sold",
+      ...(isLargeScreen
+        ? { flex: 1 } // Use flex for large screens
+        : { width: 120 }), // Use fixed width for other screens
+    },
+    {
+      field: "sold_price",
+      headerName: "Price",
+      ...(isLargeScreen
+        ? { flex: 1 } // Use flex for large screens
+        : { width: 120 }), // Use fixed width for other screens
+      valueFormatter: (value) => `$${value}`,
+    },
+  ];
 
   const closeOrderDetailsDialog = () => {
     setOpenAddOrderDialog(false);
