@@ -1,8 +1,9 @@
 import { CssBaseline } from "@mui/material";
 import Header from "./components/Header";
-import Orders from "./components/Orders";
-import InventoryDetails from "./components/InventoryDetails";
+
+import InventoryDetails from "./components/inventory/InventoryDetails";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Orders from "./components/orders/Orders";
 
 const App = () => {
   return (

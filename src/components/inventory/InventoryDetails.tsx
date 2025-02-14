@@ -1,7 +1,7 @@
 import { Button, Container, Link, Paper, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { useFetchProducts } from "../hooks/useFetchProducts";
+import { useFetchProducts } from "../../hooks/useFetchProducts";
 import { useEffect, useState } from "react";
 
 const InventoryDetails = () => {

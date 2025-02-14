@@ -2,8 +2,8 @@ import { Button, Container, Link, Paper, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid2";
-import AddOrderDetails from "./orders/AddOrderDetails";
-import { useFetchOrders } from "../hooks/useFetchOrders";
+import { useFetchOrders } from "../../hooks/useFetchOrders";
+import AddOrderDetails from "./AddOrderDetails";
 
 const Orders = () => {
   const [openAddOrderDialog, setOpenAddOrderDialog] = useState(false);
