@@ -4,11 +4,26 @@ import { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid2";
 import { useFetchOrders } from "../../hooks/useFetchOrders";
 import AddOrderDetails from "./AddOrderDetails";
+import ViewDetailsDialog, {
+  IViewDetailsMetaData,
+} from "../common/ViewDetailsDialog";
 
 const Orders = () => {
   const [openAddOrderDialog, setOpenAddOrderDialog] = useState(false);
+  const [openViewDetails, setOpenViewDetails] = useState(false);
+  const [selectedRowData, setSelectedRowData] =
+    useState<IViewDetailsMetaData | null>(null);
   const { data: ordersData, isLoading } = useFetchOrders();
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  const handleViewDetailsClick = (params: any) => {
+    const { id, _id, ...metaData } = params.row;
+    setSelectedRowData({
+      title: `${metaData.customer_name} Order`,
+      metaData,
+    });
+    setOpenViewDetails(true);
+  };
   // Function to determine if the screen is large
   const checkScreenSize = () => {
     const width = window.innerWidth;
@@ -51,7 +66,15 @@ const Orders = () => {
       ...(isLargeScreen
         ? { flex: 1 } // Use flex for large screens
         : { width: 150 }), // Use fixed width for other screens
-      renderCell: () => <Button>View Details</Button>,
+      renderCell: (params: any) => (
+        <Button
+          onClick={() => {
+            handleViewDetailsClick(params);
+          }}
+        >
+          View Details
+        </Button>
+      ),
     },
   ];
 
@@ -129,6 +152,11 @@ const Orders = () => {
           closeCallBack={closeOrderDetailsDialog}
         />
       </Paper>
+      <ViewDetailsDialog
+        data={selectedRowData}
+        open={openViewDetails}
+        closeCallBack={() => setOpenViewDetails(false)}
+      />
     </Container>
   );
 };
