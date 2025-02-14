@@ -36,7 +36,7 @@ const ViewDetailsDialog = ({
       fullWidth // Make the dialog take up the full width (up to maxWidth)
     >
       <DialogTitle>{data?.title} Details</DialogTitle>
-      <DialogContent>
+      <DialogContent dividers>
         <Box
           sx={{
             display: "grid",
