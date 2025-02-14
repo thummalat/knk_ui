@@ -68,7 +68,7 @@ const Orders = () => {
         paddingBottom: "1rem",
       }}
     >
-      <Paper elevation={3} sx={{ marginTop: "1rem", background: "#e8b9240f" }}>
+      <Paper elevation={3} sx={{ marginTop: "1rem", background: "white" }}>
         <Grid
           container
           spacing={0}
