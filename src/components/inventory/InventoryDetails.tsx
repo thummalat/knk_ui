@@ -3,9 +3,15 @@ import Grid from "@mui/material/Grid2";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useFetchProducts } from "../../hooks/useFetchProducts";
 import { useEffect, useState } from "react";
+import ViewDetailsDialog, {
+  IViewDetailsMetaData,
+} from "../common/ViewDetailsDialog";
 
 const InventoryDetails = () => {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const [openViewDetails, setOpenViewDetails] = useState(false);
+  const [selectedRowData, setSelectedRowData] =
+    useState<IViewDetailsMetaData | null>(null);
   const { isLoading, data: productsData } = useFetchProducts();
   // Function to determine if the screen is large
   const checkScreenSize = () => {
@@ -50,7 +56,20 @@ const InventoryDetails = () => {
       ...(isLargeScreen
         ? { flex: 1 } // Use flex for large screens
         : { width: 150 }), // Use fixed width for other screens
-      renderCell: () => <Link>View Details</Link>,
+      renderCell: (params: any) => (
+        <Button
+          component={Link}
+          onClick={() => {
+            setSelectedRowData({
+              title: params.row.title,
+              metaData: params.row,
+            });
+            setOpenViewDetails(true);
+          }}
+        >
+          View Details
+        </Button>
+      ),
     },
   ];
 
@@ -109,6 +128,11 @@ const InventoryDetails = () => {
           </Grid>
         </Grid>
       </Paper>
+      <ViewDetailsDialog
+        data={selectedRowData}
+        open={openViewDetails}
+        closeCallBack={() => setOpenViewDetails(false)}
+      />
     </Container>
   );
 };
