@@ -40,9 +40,9 @@ const ViewDetailsDialog = ({
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: "1.5fr 1fr", // Adjust the ratio as needed
-            gap: 2, // Adds spacing between rows
-            alignItems: "center", // Aligns items vertically
+            gridTemplateColumns: "1.5fr 1fr",
+            gap: 2,
+            alignItems: "center",
           }}
         >
           {data?.metaData &&

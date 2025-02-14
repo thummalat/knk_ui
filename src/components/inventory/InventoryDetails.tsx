@@ -18,7 +18,14 @@ const InventoryDetails = () => {
     const width = window.innerWidth;
     setIsLargeScreen(width >= 960); // 960px is the breakpoint for "lg"
   };
-
+  const handleViewDetailsClick = (params: any) => {
+    const { id, _id, ...metaData } = params.row;
+    setSelectedRowData({
+      title: metaData.title,
+      metaData,
+    });
+    setOpenViewDetails(true);
+  };
   // Update screen size on window resize
   useEffect(() => {
     checkScreenSize(); // Check initial screen size
@@ -59,11 +66,7 @@ const InventoryDetails = () => {
       renderCell: (params: any) => (
         <Button
           onClick={() => {
-            setSelectedRowData({
-              title: params.row.title,
-              metaData: params.row,
-            });
-            setOpenViewDetails(true);
+            handleViewDetailsClick(params);
           }}
         >
           View Details
