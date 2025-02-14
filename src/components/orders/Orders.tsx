@@ -51,7 +51,7 @@ const Orders = () => {
       ...(isLargeScreen
         ? { flex: 1 } // Use flex for large screens
         : { width: 150 }), // Use fixed width for other screens
-      renderCell: () => <Link>View Details</Link>,
+      renderCell: () => <Button>View Details</Button>,
     },
   ];
 

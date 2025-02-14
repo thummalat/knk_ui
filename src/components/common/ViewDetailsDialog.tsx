@@ -35,12 +35,12 @@ const ViewDetailsDialog = ({
       maxWidth="sm" // Set the maximum width of the dialog
       fullWidth // Make the dialog take up the full width (up to maxWidth)
     >
-      <DialogTitle>Details for {data?.title}</DialogTitle>
+      <DialogTitle>{data?.title} Details</DialogTitle>
       <DialogContent>
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr", // Adjust the ratio as needed
+            gridTemplateColumns: "1.5fr 1fr", // Adjust the ratio as needed
             gap: 2, // Adds spacing between rows
             alignItems: "center", // Aligns items vertically
           }}

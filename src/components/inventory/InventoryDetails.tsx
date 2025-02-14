@@ -58,7 +58,6 @@ const InventoryDetails = () => {
         : { width: 150 }), // Use fixed width for other screens
       renderCell: (params: any) => (
         <Button
-          component={Link}
           onClick={() => {
             setSelectedRowData({
               title: params.row.title,
