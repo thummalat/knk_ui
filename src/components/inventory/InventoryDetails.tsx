@@ -1,4 +1,4 @@
-import { Button, Container, Link, Paper, Typography } from "@mui/material";
+import { Button, Container, Paper, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useFetchProducts } from "../../hooks/useFetchProducts";
@@ -16,7 +16,7 @@ const InventoryDetails = () => {
   // Function to determine if the screen is large
   const checkScreenSize = () => {
     const width = window.innerWidth;
-    setIsLargeScreen(width >= 960); // 960px is the breakpoint for "lg"
+    setIsLargeScreen(width >= 960);
   };
   const handleViewDetailsClick = (params: any) => {
     const { id, _id, ...metaData } = params.row;
@@ -33,7 +33,6 @@ const InventoryDetails = () => {
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  // Define columns with responsive widths or flex
   const columns: GridColDef[] = [
     {
       field: "title",
