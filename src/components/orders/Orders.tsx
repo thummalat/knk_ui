@@ -18,9 +18,14 @@ const Orders = () => {
 
   const handleViewDetailsClick = (params: any) => {
     const { id, _id, ...metaData } = params.row;
+    const { sold_price = 0, quantities_sold = 0 } = metaData;
+    const _metaData = {
+      ...metaData,
+      "Total amount": parseFloat(sold_price) * parseFloat(quantities_sold),
+    };
     setSelectedRowData({
       title: `${metaData.customer_name} Order`,
-      metaData,
+      metaData: _metaData,
     });
     setOpenViewDetails(true);
   };
