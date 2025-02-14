@@ -44,48 +44,45 @@ export default function AddOrderDetails({
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>Order Details</DialogTitle>
+      <DialogTitle>Enter new order details</DialogTitle>
       <DialogContent dividers>
-        <DialogContentText>
-          Enter new order details
-          <Grid container spacing={2} sx={{ paddingTop: "1rem" }}>
-            <Grid size={12}>
-              <TextField
-                fullWidth
-                label="Customer Name"
-                name="cusotmerName"
-              ></TextField>
-            </Grid>
-            <Grid size={6}>
-              <TextField
-                fullWidth
-                type="number"
-                label="# Sold"
-                name="quantitiesSold"
-              ></TextField>
-            </Grid>
-            <Grid size={6}>
-              <TextField
-                fullWidth
-                type="number"
-                label="Sold Price"
-                name="soldPrice"
-              ></TextField>
-            </Grid>
-            <Grid size={12}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Product</InputLabel>
-                <Select fullWidth label="Product">
-                  {products.map((product: IProduct) => (
-                    <MenuItem value={product.sku} key={product.sku}>
-                      {product.title}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Grid>
+        <Grid container spacing={2}>
+          <Grid size={12}>
+            <TextField
+              fullWidth
+              label="Customer Name"
+              name="cusotmerName"
+            ></TextField>
           </Grid>
-        </DialogContentText>
+          <Grid size={6}>
+            <TextField
+              fullWidth
+              type="number"
+              label="# Sold"
+              name="quantitiesSold"
+            ></TextField>
+          </Grid>
+          <Grid size={6}>
+            <TextField
+              fullWidth
+              type="number"
+              label="Sold Price"
+              name="soldPrice"
+            ></TextField>
+          </Grid>
+          <Grid size={12}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Product</InputLabel>
+              <Select fullWidth label="Product">
+                {products.map((product: IProduct) => (
+                  <MenuItem value={product.sku} key={product.sku}>
+                    {product.title}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
       </DialogContent>
       <DialogActions>
         <Button type="submit" variant="contained">
