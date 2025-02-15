@@ -1,81 +1,121 @@
-import { Button, Container, Link, Paper, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Button, Container, Paper, Skeleton, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid2";
 import { useFetchOrders } from "../../hooks/useFetchOrders";
+import { useFetchProducts } from "../../hooks/useFetchProducts";
 import AddOrderDetails from "./AddOrderDetails";
 import ViewDetailsDialog, {
   IViewDetailsMetaData,
 } from "../common/ViewDetailsDialog";
 
-const Orders = () => {
+// Define types for better type safety
+interface Product {
+  sku: string;
+  title: string;
+}
+
+interface Order {
+  id: string;
+  _id: string;
+  customer_name: string;
+  sold_price: number | string;
+  quantities_sold: number | string;
+  sku: string;
+}
+
+const Orders: React.FC = () => {
+  // State management
   const [openAddOrderDialog, setOpenAddOrderDialog] = useState(false);
   const [openViewDetails, setOpenViewDetails] = useState(false);
   const [selectedRowData, setSelectedRowData] =
     useState<IViewDetailsMetaData | null>(null);
-  const { data: ordersData, isLoading } = useFetchOrders();
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const [productMap, setProductMap] = useState<Record<string, string> | null>(
+    null
+  );
 
-  const handleViewDetailsClick = (params: any) => {
+  // Fetch data
+  const { data: ordersData, isLoading: isOrdersLoading } = useFetchOrders();
+  const { data: productsData, isLoading: isProductsLoading } =
+    useFetchProducts();
+
+  // Process productsData to create a SKU-to-title map
+  useEffect(() => {
+    if (productsData && productsData.length > 0) {
+      const map = productsData.reduce(
+        (acc: Record<string, string>, product: Product) => {
+          acc[product.sku] = product.title;
+          return acc;
+        },
+        {}
+      );
+      setProductMap(map);
+    }
+  }, [productsData]);
+
+  // Handle view details button click
+  const handleViewDetailsClick = (params: { row: Order }) => {
+    if (!productMap) {
+      console.error("Product data is not yet available.");
+      return;
+    }
+
     const { id, _id, ...metaData } = params.row;
-    const { sold_price = 0, quantities_sold = 0 } = metaData;
+    const { sold_price = 0, quantities_sold = 0, sku = "" } = metaData;
+
     const _metaData = {
       ...metaData,
-      "Total amount": parseFloat(sold_price) * parseFloat(quantities_sold),
+      "Product Name": productMap[sku] || "Unknown Product",
+      "Total amount":
+        parseFloat(sold_price as string) *
+        parseFloat(quantities_sold as string),
     };
+
     setSelectedRowData({
       title: `${metaData.customer_name} Order`,
       metaData: _metaData,
     });
     setOpenViewDetails(true);
   };
-  // Function to determine if the screen is large
-  const checkScreenSize = () => {
-    const width = window.innerWidth;
-    setIsLargeScreen(width >= 960); // 960px is the breakpoint for "lg"
-  };
 
-  // Update screen size on window resize
+  // Handle screen size changes
   useEffect(() => {
-    checkScreenSize(); // Check initial screen size
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 960); // 960px is the breakpoint for "lg"
+    };
+
+    checkScreenSize(); // Initial check
     window.addEventListener("resize", checkScreenSize);
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
+  // Define columns for the DataGrid
   const columns: GridColDef[] = [
     {
       field: "customer_name",
       headerName: "Customer Name",
-      ...(isLargeScreen
-        ? { flex: 1 } // Use flex for large screens
-        : { width: 200 }), // Use fixed width for other screens
+      ...(isLargeScreen ? { flex: 1 } : { width: 200 }),
     },
     {
       field: "quantities_sold",
       headerName: "# Sold",
-      ...(isLargeScreen
-        ? { flex: 1 } // Use flex for large screens
-        : { width: 120 }), // Use fixed width for other screens
+      ...(isLargeScreen ? { flex: 1 } : { width: 120 }),
     },
     {
       field: "sold_price",
       headerName: "Price",
-      ...(isLargeScreen
-        ? { flex: 1 } // Use flex for large screens
-        : { width: 120 }), // Use fixed width for other screens
+      ...(isLargeScreen ? { flex: 1 } : { width: 120 }),
       valueFormatter: (value) => `$${value}`,
     },
     {
       field: "actions",
       headerName: "Actions",
-      ...(isLargeScreen
-        ? { flex: 1 } // Use flex for large screens
-        : { width: 150 }), // Use fixed width for other screens
-      renderCell: (params: any) => (
+      ...(isLargeScreen ? { flex: 1 } : { width: 150 }),
+      renderCell: (params) => (
         <Button
-          onClick={() => {
-            handleViewDetailsClick(params);
-          }}
+          onClick={() => handleViewDetailsClick(params)}
+          disabled={!productMap}
         >
           View Details
         </Button>
@@ -83,28 +123,18 @@ const Orders = () => {
     },
   ];
 
-  const closeOrderDetailsDialog = () => {
-    setOpenAddOrderDialog(false);
-  };
+  // Render loading skeleton if data is being fetched
+  if (isOrdersLoading || isProductsLoading) {
+    return <Skeleton variant="rectangular" height={400} />;
+  }
 
-  const addNewOrder = () => {
-    setOpenAddOrderDialog(true);
-  };
   return (
-    <Container
-      sx={{
-        paddingBottom: "1rem",
-      }}
-    >
+    <Container sx={{ paddingBottom: "1rem" }}>
       <Paper elevation={3} sx={{ marginTop: "1rem", background: "white" }}>
         <Grid
           container
           spacing={0}
-          sx={{
-            alignItems: "center",
-            padding: "1rem",
-            paddingTop: 0,
-          }}
+          sx={{ alignItems: "center", padding: "1rem", paddingTop: 0 }}
         >
           <Grid size={12}>
             <Typography
@@ -122,41 +152,38 @@ const Orders = () => {
           <Grid size={6}>
             <Typography
               variant="h6"
-              sx={{
-                fontWeight: "400",
-                marginBlock: "1rem",
-              }}
+              sx={{ fontWeight: "400", marginBlock: "1rem" }}
             >
-              Total Sold : {`$${ordersData?.totalSoldCost}`}
+              Total Sold: {`$${ordersData?.totalSoldCost}`}
             </Typography>
           </Grid>
-          <Grid size={6} display={"flex"} justifyContent={"flex-end"}>
-            <Button variant="outlined" onClick={addNewOrder}>
+          <Grid size={6} display="flex" justifyContent="flex-end">
+            <Button
+              variant="outlined"
+              onClick={() => setOpenAddOrderDialog(true)}
+            >
               Add
             </Button>
           </Grid>
-
           <Grid size={12}>
             <DataGrid
               sx={{ background: "white" }}
               initialState={{
-                pagination: {
-                  paginationModel: {
-                    pageSize: 10,
-                  },
-                },
+                pagination: { paginationModel: { pageSize: 10 } },
               }}
               pageSizeOptions={[10]}
-              rows={ordersData?.soldProductDetails}
+              rows={ordersData?.soldProductDetails || []}
               columns={columns}
             />
           </Grid>
         </Grid>
-        <AddOrderDetails
-          open={openAddOrderDialog}
-          closeCallBack={closeOrderDetailsDialog}
-        />
       </Paper>
+
+      {/* Dialogs */}
+      <AddOrderDetails
+        open={openAddOrderDialog}
+        closeCallBack={() => setOpenAddOrderDialog(false)}
+      />
       <ViewDetailsDialog
         data={selectedRowData}
         open={openViewDetails}

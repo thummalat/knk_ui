@@ -10,7 +10,7 @@ import {
 
 export interface IViewDetailsMetaData {
   title: string;
-  metaData: Record<string, string>;
+  metaData: Record<string, string | number>;
 }
 
 interface IViewDetailsDialog {
