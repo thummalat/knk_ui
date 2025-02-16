@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import ViewDetailsDialog, {
   IViewDetailsMetaData,
 } from "../common/ViewDetailsDialog";
+import BestSellers from "./BestSellers";
 
 const InventoryDetails = () => {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
@@ -129,6 +130,7 @@ const InventoryDetails = () => {
           </Grid>
         </Grid>
       </Paper>
+      <BestSellers />
       <ViewDetailsDialog
         data={selectedRowData}
         open={openViewDetails}
