@@ -13,7 +13,7 @@ const BestSellers = () => {
   const { data, isLoading } = useFetchBestSellers();
 
   return (
-    <Paper elevation={2} sx={{ marginTop: "1rem", background: "white" }}>
+    <Paper elevation={2} sx={{ marginTop: "2rem", background: "white" }}>
       <Grid container spacing={2} padding={"1rem"}>
         <Grid size={12}>
           <Typography
@@ -49,11 +49,6 @@ const BestSellers = () => {
                   Total sold: #{d.totalQuantitiesSold}
                 </Typography>
               </CardContent>
-              <CardActions>
-                <Button size="small" variant="outlined">
-                  View Details
-                </Button>
-              </CardActions>
             </Card>
           </Grid>
         ))}
