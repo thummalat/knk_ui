@@ -32,11 +32,8 @@ const BestSellers = () => {
         {data?.slice(0, 3).map((d: any) => (
           <Grid size={{ xs: 12, sm: 6, md: 4 }} sx={{ alignItems: "center" }}>
             <Card variant="outlined">
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  sx={{ color: "text.secondary", fontSize: 14 }}
-                >
+              <CardContent sx={{ color: "#094252" }}>
+                <Typography gutterBottom sx={{ fontSize: 14 }}>
                   SKU: {d.sku}
                 </Typography>
                 <Typography
@@ -45,7 +42,7 @@ const BestSellers = () => {
                 >
                   {d.title}
                 </Typography>
-                <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
+                <Typography sx={{ mb: 1.5 }}>
                   Total sold: #{d.totalQuantitiesSold}
                 </Typography>
               </CardContent>
