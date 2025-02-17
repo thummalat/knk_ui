@@ -13,7 +13,10 @@ const BestSellers = () => {
   const { data, isLoading } = useFetchBestSellers();
 
   return (
-    <Paper elevation={2} sx={{ marginTop: "2rem", background: "white" }}>
+    <Paper
+      elevation={2}
+      sx={{ marginTop: "2rem", background: "white", backgroundColor: "gray" }}
+    >
       <Grid container spacing={2} padding={"1rem"}>
         <Grid size={12}>
           <Typography
