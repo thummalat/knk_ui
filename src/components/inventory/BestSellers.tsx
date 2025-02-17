@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Card,
   CardActions,
@@ -14,21 +15,26 @@ const BestSellers = () => {
 
   return (
     <Paper elevation={2} sx={{ marginTop: "2rem", background: "white" }}>
-      <Grid container spacing={2} padding={"1rem"}>
-        <Grid size={12}>
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: "700",
-              marginBlock: "1rem",
-              textTransform: "uppercase",
-              textAlign: "center",
-            }}
-          >
-            Best Sellers
-          </Typography>
-        </Grid>
+      <Box sx={{ backgroundColor: "#e8b924ad", paddingBlock: "0.1rem" }}>
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: "700",
+            marginBlock: "1rem",
+            textTransform: "uppercase",
+            textAlign: "center",
+          }}
+        >
+          Best Sellers
+        </Typography>
+      </Box>
 
+      <Grid
+        container
+        spacing={2}
+        sx={{ backgroundColor: "#f0d07226" }}
+        padding={"1rem"}
+      >
         {data?.slice(0, 3).map((d: any) => (
           <Grid size={{ xs: 12, sm: 6, md: 4 }} sx={{ alignItems: "center" }}>
             <Card variant="outlined">
