@@ -81,7 +81,7 @@ const InventoryDetails = () => {
         paddingBottom: "1rem",
       }}
     >
-      <Paper elevation={3} sx={{ marginTop: "1rem", background: "white" }}>
+      <Paper elevation={2} sx={{ marginTop: "1rem", background: "white" }}>
         <Grid
           container
           spacing={0}

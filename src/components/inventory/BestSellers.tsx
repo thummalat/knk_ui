@@ -13,7 +13,7 @@ const BestSellers = () => {
   const { data, isLoading } = useFetchBestSellers();
 
   return (
-    <Paper elevation={3} sx={{ marginTop: "1rem", background: "white" }}>
+    <Paper elevation={2} sx={{ marginTop: "1rem", background: "white" }}>
       <Grid container spacing={2} padding={"1rem"}>
         <Grid size={12}>
           <Typography
@@ -31,7 +31,7 @@ const BestSellers = () => {
 
         {data?.slice(0, 3).map((d: any) => (
           <Grid size={{ xs: 12, sm: 6, md: 4 }} sx={{ alignItems: "center" }}>
-            <Card>
+            <Card variant="outlined">
               <CardContent>
                 <Typography
                   gutterBottom
