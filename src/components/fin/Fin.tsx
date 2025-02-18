@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   CardContent,
+  Divider,
   Paper,
   TextField,
   Typography,
@@ -58,14 +59,32 @@ const Fin = () => {
         {showFinDetails && (
           <>
             <Grid size={12}>
-              <Card variant="outlined">
+              <Card>
                 <CardContent>
                   <Typography
-                    sx={{ fontSize: "1.2rem", fontWeight: 500 }}
+                    sx={{
+                      fontSize: "1.2rem",
+                      fontWeight: 600,
+                      color: "#094252",
+                      textAlign: "center",
+                    }}
                     component="div"
                   >
                     Praveen
+                    <Divider />
                   </Typography>
+                  <Grid container sx={{ marginTop: "1rem" }} spacing={2}>
+                    <Grid size={12} sx={{ fontWeight: 500 }}>
+                      Amount Owed To Me: &#8377;100000
+                    </Grid>
+
+                    <Grid size={12} sx={{ fontWeight: 500 }}>
+                      Intrest: 6%
+                    </Grid>
+                    <Grid size={12} sx={{ fontWeight: 500 }}>
+                      Date Borrowed: Jan-01-2024
+                    </Grid>
+                  </Grid>
                 </CardContent>
               </Card>
             </Grid>
@@ -73,11 +92,29 @@ const Fin = () => {
               <Card variant="outlined">
                 <CardContent>
                   <Typography
-                    sx={{ fontSize: "1.2rem", fontWeight: 500 }}
+                    sx={{
+                      fontSize: "1.2rem",
+                      fontWeight: 600,
+                      color: "#094252",
+                      textAlign: "center",
+                    }}
                     component="div"
                   >
                     Dinesh
+                    <Divider />
                   </Typography>
+                  <Grid container sx={{ marginTop: "1rem" }} spacing={2}>
+                    <Grid size={12} sx={{ fontWeight: 500 }}>
+                      Amount Owed To Me: &#8377;TBD
+                    </Grid>
+
+                    <Grid size={12} sx={{ fontWeight: 500 }}>
+                      Intrest: TBD
+                    </Grid>
+                    <Grid size={12} sx={{ fontWeight: 500 }}>
+                      Date Borrowed: TBD
+                    </Grid>
+                  </Grid>
                 </CardContent>
               </Card>
             </Grid>
@@ -85,11 +122,29 @@ const Fin = () => {
               <Card variant="outlined">
                 <CardContent>
                   <Typography
-                    sx={{ fontSize: "1.2rem", fontWeight: 500 }}
+                    sx={{
+                      fontSize: "1.2rem",
+                      fontWeight: 600,
+                      color: "#094252",
+                      textAlign: "center",
+                    }}
                     component="div"
                   >
                     Rajesh
+                    <Divider />
                   </Typography>
+                  <Grid container sx={{ marginTop: "1rem" }} spacing={2}>
+                    <Grid size={12} sx={{ fontWeight: 500 }}>
+                      Amount Owed To Me: &#8377;TBD
+                    </Grid>
+
+                    <Grid size={12} sx={{ fontWeight: 500 }}>
+                      Intrest: TBD
+                    </Grid>
+                    <Grid size={12} sx={{ fontWeight: 500 }}>
+                      Date Borrowed: TBD
+                    </Grid>
+                  </Grid>
                 </CardContent>
               </Card>
             </Grid>
