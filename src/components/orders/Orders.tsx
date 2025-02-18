@@ -129,7 +129,7 @@ const Orders: React.FC = () => {
   }
 
   return (
-    <Container sx={{ paddingBottom: "1rem" }}>
+    <>
       <Paper elevation={2} sx={{ marginTop: "1rem", background: "white" }}>
         <Grid
           container
@@ -189,7 +189,7 @@ const Orders: React.FC = () => {
         open={openViewDetails}
         closeCallBack={() => setOpenViewDetails(false)}
       />
-    </Container>
+    </>
   );
 };
 

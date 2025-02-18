@@ -39,6 +39,16 @@ const Header = () => {
           >
             orders
           </Button>
+          {/* <Button
+            component={Link}
+            to="/fin"
+            sx={{
+              color: "#E8B923",
+              borderRadius: 0,
+            }}
+          >
+            Financials
+          </Button> */}
         </Toolbar>
       </AppBar>
     </Box>

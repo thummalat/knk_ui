@@ -76,11 +76,7 @@ const InventoryDetails = () => {
   ];
 
   return (
-    <Container
-      sx={{
-        paddingBottom: "1rem",
-      }}
-    >
+    <>
       <Paper elevation={2} sx={{ marginTop: "1rem", background: "white" }}>
         <Grid
           container
@@ -136,7 +132,7 @@ const InventoryDetails = () => {
         open={openViewDetails}
         closeCallBack={() => setOpenViewDetails(false)}
       />
-    </Container>
+    </>
   );
 };
 
