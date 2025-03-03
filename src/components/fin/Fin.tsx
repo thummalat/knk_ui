@@ -40,7 +40,7 @@ const Fin = () => {
         spacing={2}
         sx={{ padding: "1rem", justifyContent: "center" }}
       >
-        <Grid size={3}>
+        <Grid size={{xs:6, sm:3}}>
           <TextField
             fullWidth
             type="password"
