@@ -40,7 +40,7 @@ const Fin = () => {
         spacing={2}
         sx={{ padding: "1rem", justifyContent: "center" }}
       >
-        <Grid size={{xs:6, sm:3}}>
+        <Grid size={{ xs: 6, sm: 3 }}>
           <TextField
             fullWidth
             type="password"
@@ -59,22 +59,42 @@ const Fin = () => {
         {showFinDetails && (
           <>
             <Grid size={12}>
-              <Card>
+              <Card sx={{backgroundColor:"#85b7c614"}}>
                 <CardContent>
                   <Typography
                     sx={{
-                      fontSize: "1.2rem",
+                      fontSize: "1.4rem",
                       fontWeight: 600,
                       color: "#094252",
-                      textAlign: "center",
+                      // textAlign: "center"
                     }}
                     component="div"
                   >
                     Praveen
-                    <Divider />
+                    <Divider sx={{marginTop:"1rem"}} />
                   </Typography>
                   <Grid container sx={{ marginTop: "1rem" }} spacing={2}>
-                    <Grid size={12} sx={{ fontWeight: 500 }}>
+                    <Grid size={12} sx={{marginBottom:"1rem"}}>
+                      <Box sx={{color:"#03894b", fontWeight:500, fontSize:"1.2rem"}}>Principal: &#8377;1900000</Box>
+                      
+                    </Grid>
+                    <Grid size={{ xs: 12, sm: 6 }} sx={{backgroundColor:"#c4dfce4a", padding:"1rem"}}>
+                      
+                        <Box>Amount Owed To Me: &#8377;1000000</Box>
+                        <Box> Intrest: 6%</Box>
+                        <Box> Date Borrowed: Jan-01-2024</Box>
+                      
+                    </Grid>
+                    <Grid size={{ xs: 12, sm: 6 }} sx={{backgroundColor:"#c4dfce4a", padding:"1rem"}}>
+                     
+                        <Box>Amount Owed To Me: &#8377;900000</Box>
+                        <Box> Intrest: 8%</Box>
+                        <Box> Date Borrowed: Jan-01-2024</Box>
+                      
+                    </Grid>
+
+                    {/* </Grid> */}
+                    {/* <Grid size={12} sx={{ fontWeight: 500 }}>
                       Amount Owed To Me: &#8377;100000
                     </Grid>
 
@@ -84,12 +104,23 @@ const Fin = () => {
                     <Grid size={12} sx={{ fontWeight: 500 }}>
                       Date Borrowed: Jan-01-2024
                     </Grid>
+
+                    <Grid size={12} sx={{ fontWeight: 500 }}>
+                      Amount Owed To Me: &#8377;100000
+                    </Grid>
+
+                    <Grid size={12} sx={{ fontWeight: 500 }}>
+                      Intrest: 6%
+                    </Grid>
+                    <Grid size={12} sx={{ fontWeight: 500 }}>
+                      Date Borrowed: Jan-01-2024
+                    </Grid> */}
                   </Grid>
                 </CardContent>
               </Card>
             </Grid>
             <Grid size={12}>
-              <Card variant="outlined">
+              {/* <Card variant="outlined">
                 <CardContent>
                   <Typography
                     sx={{
@@ -114,6 +145,44 @@ const Fin = () => {
                     <Grid size={12} sx={{ fontWeight: 500 }}>
                       Date Borrowed: TBD
                     </Grid>
+                  </Grid>
+                </CardContent>
+              </Card> */}
+              <Card sx={{backgroundColor:"#85b7c614"}}>
+                <CardContent>
+                  <Typography
+                    sx={{
+                      fontSize: "1.4rem",
+                      fontWeight: 600,
+                      color: "#094252",
+                      // textAlign: "center"
+                    }}
+                    component="div"
+                  >
+                    Dinesh
+                    <Divider sx={{marginTop:"1rem"}} />
+                  </Typography>
+                  <Grid container sx={{ marginTop: "1rem" }} spacing={2}>
+                    <Grid size={12} sx={{marginBottom:"1rem"}}>
+                      <Box sx={{color:"#03894b", fontWeight:500, fontSize:"1.2rem"}}>Principal: &#8377;1500000</Box>
+                      
+                    </Grid>
+                    <Grid size={{ xs: 12, sm: 6 }} sx={{backgroundColor:"#c4dfce4a", padding:"1rem"}}>
+                      
+                        <Box>Amount Owed To Me: &#8377;1000000</Box>
+                        <Box> Intrest: 6%</Box>
+                        <Box> Date Borrowed: Jan-01-2024</Box>
+                      
+                    </Grid>
+                    <Grid size={{ xs: 12, sm: 6 }} sx={{backgroundColor:"#c4dfce4a", padding:"1rem"}}>
+                     
+                        <Box>Amount Owed To Me: &#8377;500000</Box>
+                        <Box> Intrest: 8%</Box>
+                        <Box> Date Borrowed: Jan-01-2024</Box>
+                      
+                    </Grid>
+
+                    
                   </Grid>
                 </CardContent>
               </Card>
