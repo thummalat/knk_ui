@@ -1,4 +1,4 @@
-import { Button, Container, Paper, Typography } from "@mui/material";
+import { Box, Button, Container, Paper, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useFetchProducts } from "../../hooks/useFetchProducts";
@@ -78,7 +78,7 @@ const InventoryDetails = () => {
   return (
     <>
       <Paper elevation={2} sx={{ marginTop: "1rem", background: "white" }}>
-        <Grid
+        {/* <Grid
           container
           spacing={0}
           sx={{
@@ -98,14 +98,35 @@ const InventoryDetails = () => {
             >
               Inventory Details
             </Typography>
-          </Grid>
+          </Grid> */}
+          <Box sx={{ backgroundColor: "#01171ddb", paddingBlock: "0.1rem" }}>
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: "700",
+            color:"white",
+            marginBlock: "1rem",
+            textTransform: "uppercase",
+            textAlign: "center",
+          }}
+        >
+          Inventory Details
+
+        </Typography>
+      </Box>
+      <Grid
+        container
+        spacing={2}
+        sx={{ backgroundColor: "#6669691a" }}
+        padding={"1rem"}
+      >
           <Grid
             size={12}
             display={"flex"}
             sx={{ marginBottom: "1rem" }}
             justifyContent={"flex-end"}
           >
-            <Button variant="outlined" onClick={() => {}}>
+            <Button variant="contained" onClick={() => {}}>
               Add Item
             </Button>
           </Grid>
