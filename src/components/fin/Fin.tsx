@@ -3,23 +3,54 @@ import {
   Button,
   Card,
   CardContent,
-  Divider,
   Paper,
   TextField,
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+
+import finData, { TFinData } from "./data/fin_data";
+
+const calculateFinData = (finDetails: TFinData | null) => {
+  if (!finDetails) return { data: [], sumAmount: 0 };
+
+  const data = Object.keys(finDetails).map((key) => {
+    const { interestInfo } = finDetails[key];
+    const principal = interestInfo.reduce((acc, curr) => acc + curr.amountOwed, 0);
+    return { ...finDetails[key], principal };
+  });
+
+  const sumAmount = data.reduce((acc, curr) => acc + curr.principal, 0);
+
+  return { data, sumAmount };
+};
+
+const formatCurrency = (input: number) => {
+  return new Intl.NumberFormat("en-IN").format(input);
+};
+
+const formatDate = (date: Date): string => {
+  return date
+    .toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric", timeZone: "UTC" })
+    .toUpperCase();
+};
 
 const Fin = () => {
   const [showFinDetails, setShowFinDetails] = useState(false);
   const [passcode, setPasscode] = useState("");
-  const passcodeChangeHandler = (e: any) => {
+  const [finDetails] = useState<TFinData | null>(finData);
+
+  const { data, sumAmount } = useMemo(() => calculateFinData(finDetails), [finDetails]);
+
+  const handlePasscodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasscode(e.target.value);
   };
+
   const handleSubmit = () => {
     setShowFinDetails(passcode === "1234");
   };
+
   return (
     <Paper elevation={2} sx={{ marginTop: "1rem", background: "white" }}>
       <Box sx={{ backgroundColor: "#2ec4b6", paddingBlock: "0.1rem" }}>
@@ -35,11 +66,7 @@ const Fin = () => {
           Financial Details
         </Typography>
       </Box>
-      <Grid
-        container
-        spacing={2}
-        sx={{ padding: "1rem", justifyContent: "center" }}
-      >
+      <Grid container spacing={3} sx={{ padding: "1rem", justifyContent: "center" }}>
         <Grid size={{ xs: 6, sm: 3 }}>
           <TextField
             fullWidth
@@ -47,125 +74,56 @@ const Fin = () => {
             id="passcode"
             value={passcode}
             label="Enter Passcode"
-            onChange={passcodeChangeHandler}
+            onChange={handlePasscodeChange}
             name="passcode"
-          ></TextField>
+          />
         </Grid>
-        <Grid size={2} sx={{ alignContent: "center", justifyItems: "center" }}>
+        <Grid size={2} sx={{ alignContent: "center", justifyItems: "center"  }}>
           <Button variant="contained" onClick={handleSubmit}>
             Submit
           </Button>
         </Grid>
-        {showFinDetails && (
+
+        {showFinDetails && data.length > 0 && (
           <>
             <Grid size={12}>
-              <Card sx={{backgroundColor:"#85b7c614"}}>
-                <CardContent>
-                  <Typography
-                    sx={{
-                      fontSize: "1.4rem",
-                      fontWeight: 600,
-                      color: "#094252",
-                    }}
-                    component="div"
-                  >
-                    Praveen
-                    <Divider sx={{marginTop:"1rem"}} />
-                  </Typography>
-                  <Grid container sx={{ marginTop: "1rem" }} spacing={2}>
-                    <Grid size={12} sx={{marginBottom:"1rem"}}>
-                      <Box sx={{color:"#03894b", fontWeight:500, fontSize:"1.2rem"}}>Principal: &#8377;1900000</Box>
-                      
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6 }} sx={{backgroundColor:"#c4dfce4a", padding:"1rem"}}>
-                      
-                        <Box>Amount Owed To Me: &#8377;1000000</Box>
-                        <Box> Interest: 6%</Box>
-                        <Box> Date Borrowed: Jan-01-2024</Box>
-                      
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6 }} sx={{backgroundColor:"#c4dfce4a", padding:"1rem"}}>
-                     
-                        <Box>Amount Owed To Me: &#8377;900000</Box>
-                        <Box> Interest: 8%</Box>
-                        <Box> Date Borrowed: Aug-14-2024</Box>
-                      
-                    </Grid>
-                  </Grid>
-                </CardContent>
-              </Card>
+              <Typography variant="h6" sx={{ color: "#97040b", fontWeight: 700 }}>
+                Total Amount: ₹{formatCurrency(sumAmount)}
+              </Typography>
             </Grid>
-            <Grid size={12}>
-              <Card sx={{backgroundColor:"#85b7c614"}}>
-                <CardContent>
-                  <Typography
-                    sx={{
-                      fontSize: "1.4rem",
-                      fontWeight: 600,
-                      color: "#094252",
-                    }}
-                    component="div"
-                  >
-                    Dinesh
-                    <Divider sx={{marginTop:"1rem"}} />
-                  </Typography>
-                  <Grid container sx={{ marginTop: "1rem" }} spacing={2}>
-                    <Grid size={12} sx={{marginBottom:"1rem"}}>
-                      <Box sx={{color:"#03894b", fontWeight:500, fontSize:"1.2rem"}}>Principal: &#8377;1500000</Box>
-                      
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6 }} sx={{backgroundColor:"#c4dfce4a", padding:"1rem"}}>
-                      
-                        <Box>Amount Owed To Me: &#8377;1000000</Box>
-                        <Box> Interest: 6%</Box>
-                        <Box> Date Borrowed: Aug-05-2024</Box>
-                      
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6 }} sx={{backgroundColor:"#c4dfce4a", padding:"1rem"}}>
-                     
-                        <Box>Amount Owed To Me: &#8377;500000</Box>
-                        <Box> Interest: 8%</Box>
-                        <Box> Date Borrowed: Aug-05-2024</Box>
-                      
-                    </Grid>
+            {data.map((d, index) => (
+              <Grid size={12} key={index}>
+                <Card variant="outlined" sx={{ backgroundColor: "#85b7c614" }}>
+                  <CardContent>
+                    <Typography sx={{ fontSize: "1.4rem", fontWeight: 600, color: "#094252" }}>
+                      {d.name}
+                    </Typography>
 
-                    
-                  </Grid>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid size={12}>
-              <Card sx={{backgroundColor:"#85b7c614"}}>
-                <CardContent>
-                  <Typography
-                    sx={{
-                      fontSize: "1.4rem",
-                      fontWeight: 600,
-                      color: "#094252",
-                    }}
-                    component="div"
-                  >
-                    Rajesh
-                    <Divider sx={{marginTop:"1rem"}} />
-                  </Typography>
-                  <Grid container sx={{ marginTop: "1rem" }} spacing={2}>
-                    <Grid size={12} sx={{marginBottom:"1rem"}}>
-                      <Box sx={{color:"#03894b", fontWeight:500, fontSize:"1.2rem"}}>Principal: &#8377;1000000</Box>
-                      
+                    <Grid container sx={{ marginTop: "1rem" }} spacing={2}>
+                      <Grid size={12} sx={{ marginBottom: "1rem" }}>
+                        <Box sx={{ color: "#03894b", fontWeight: 500, fontSize: "1.2rem" }}>
+                          Principal: ₹{formatCurrency(d.principal)}
+                        </Box>
+                      </Grid>
+                      {d.interestInfo.map((info, i) => (
+                        <Grid size={{ xs: 12, sm: 6 }} key={i} sx={{ backgroundColor: "#c4dfce4a", padding: "1rem" }}>
+                          <Box>Amount Owed To Me: ₹{formatCurrency(info.amountOwed)}</Box>
+                          <Box>Interest: {info.interest}%</Box>
+                          <Box>
+                            Date Borrowed: {info.dateBorrowed ? formatDate(info.dateBorrowed) : "N/A"}
+                          </Box>
+                        </Grid>
+                      ))}
                     </Grid>
-                    <Grid size={{ xs: 12, sm: 6 }} sx={{backgroundColor:"#c4dfce4a", padding:"1rem"}}>
-                        <Box>Amount Owed To Me: &#8377;1000000</Box>
-                        <Box> Interest: 12%</Box>
-                        <Box> Date Borrowed: Aug-26-2024</Box>
-                    </Grid>      
-                  </Grid>
-                </CardContent>
-              </Card>
-            </Grid>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
           </>
         )}
       </Grid>
     </Paper>
   );
 };
+
 export default Fin;
