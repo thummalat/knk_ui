@@ -32,7 +32,7 @@ const Fin = () => {
             textAlign: "center",
           }}
         >
-          Financials
+          Financial Details
         </Typography>
       </Box>
       <Grid
@@ -66,7 +66,6 @@ const Fin = () => {
                       fontSize: "1.4rem",
                       fontWeight: 600,
                       color: "#094252",
-                      // textAlign: "center"
                     }}
                     component="div"
                   >
@@ -104,7 +103,6 @@ const Fin = () => {
                       fontSize: "1.4rem",
                       fontWeight: 600,
                       color: "#094252",
-                      // textAlign: "center"
                     }}
                     component="div"
                   >
@@ -144,7 +142,6 @@ const Fin = () => {
                       fontSize: "1.4rem",
                       fontWeight: 600,
                       color: "#094252",
-                      // textAlign: "center"
                     }}
                     component="div"
                   >
