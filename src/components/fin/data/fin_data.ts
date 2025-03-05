@@ -1,8 +1,9 @@
 export interface InterestInfo {
   amountOwed: number;
   interest: number;
-  dateBorrowed: Date | null;
+  dateBorrowed: Date;
   remarks: string;
+  interestEarned?:number;
 }
 
 export interface PaymentInfo {
