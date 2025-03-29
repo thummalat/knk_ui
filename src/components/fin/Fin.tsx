@@ -11,7 +11,9 @@ import Grid from "@mui/material/Grid2";
 import { useState, useMemo } from "react";
 
 import finData, { TFinData } from "./data/fin_data";
-import { daysFromToday, formatCurrency, formatDate } from "./utils";
+import { daysFromToday, formatCurrency } from "./utils";
+import Borrowbox from "./borrow/Borrowbox";
+import Findetails from "./Findetails";
 
 const calculateFinData = (finDetails: TFinData | null) => {
   if (!finDetails) return { data: [], sumAmount: 0 };
@@ -19,7 +21,7 @@ const calculateFinData = (finDetails: TFinData | null) => {
   const DAYS_IN_YEAR = 365;
 
   const data = Object.keys(finDetails).map((key) => {
-    const { interestInfo, ...otherDetails } = finDetails[key];
+    const { interestInfo, paymentInfo, ...otherDetails } = finDetails[key];
 
     const updatedInterestInfo = interestInfo.map((info) => ({
       ...info,
@@ -37,12 +39,14 @@ const calculateFinData = (finDetails: TFinData | null) => {
       (total, { interestEarned }) => total + interestEarned,
       0
     );
+    const totalInterestedPaid = paymentInfo.reduce((total, {amountPaid})=> total+amountPaid,0)
 
     return {
       interestInfo: updatedInterestInfo,
       ...otherDetails,
       principal,
       totalInterestedEarned,
+      totalInterestedPaid
     };
   });
 
@@ -113,7 +117,7 @@ const Fin = () => {
                 variant="h6"
                 sx={{ color: "#97040b", fontWeight: 700 }}
               >
-                Total Amount: ₹{formatCurrency(sumAmount)}
+                Total Amount: {formatCurrency(sumAmount)}
               </Typography>
             </Grid>
             {data.map((d, index) => (
@@ -132,8 +136,8 @@ const Fin = () => {
 
                     <Grid container sx={{ marginTop: "1rem" }} spacing={2}>
                       <Grid
-                        size={{ xs: 12, sm: 6, md: 4 }}
-                        sx={{ marginBottom: "1rem" }}
+                        size={12}
+                      
                       >
                         <Box
                           sx={{
@@ -142,48 +146,17 @@ const Fin = () => {
                             fontSize: "1.2rem",
                           }}
                         >
-                          Principal: ₹{formatCurrency(d.principal)}
+                          Principal: {formatCurrency(d.principal)}
                         </Box>
                       </Grid>
                       <Grid
-                        size={{ xs: 12, sm: 6, md: 4 }}
-                        sx={{ marginBottom: "1rem" }}
+                        size={12}
+                      
                       >
-                        <Box
-                          sx={{
-                            color: "#03894b",
-                            fontWeight: 500,
-                            fontSize: "1.2rem",
-                          }}
-                        >
-                          Total Interested Earned: ₹
-                          {formatCurrency(d.totalInterestedEarned)}
-                        </Box>
+                        <Findetails total={d.totalInterestedEarned} paid={d.totalInterestedPaid} />
                       </Grid>
                       {d.interestInfo.map((info, i) => (
-                        <Grid
-                          size={{ xs: 12, sm: 6 }}
-                          key={i}
-                          sx={{ backgroundColor: "#c4dfce4a", padding: "1rem" }}
-                        >
-                          <Box>
-                            Amount Owed To Me: ₹
-                            {formatCurrency(info.amountOwed)}
-                          </Box>
-                          <Box>Interest: {info.interest}%</Box>
-                          <Box>
-                            Date Borrowed:{" "}
-                            {info.dateBorrowed
-                              ? formatDate(info.dateBorrowed)
-                              : "N/A"}
-                          </Box>
-                          <Box>
-                            Number of days: {daysFromToday(info.dateBorrowed)}
-                          </Box>
-                          <Box>
-                            Total Interest Earned : ₹{info.interestEarned}
-                          </Box>
-                        </Grid>
+                        <Borrowbox info={info}/>
                       ))}
                     </Grid>
                   </CardContent>
