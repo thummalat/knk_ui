@@ -108,7 +108,12 @@ const finData = {
         remarks: "Sreethan school fee - through PhonePe",
       },
     ],
-    paymentInfo: [],
+    paymentInfo: [
+      {
+        dateOfPayment: new Date("2025-06-10T00:00:00.000Z"),
+        amountPaid: 50000,
+      },
+    ],
   },
   Rajesh: {
     name: "Rajesh Challagolla",
@@ -133,7 +138,7 @@ const finData = {
         dateOfPayment: new Date("2024-11-27T00:00:00.000Z"),
         amountPaid: 10000,
       },
-     
+
       {
         dateOfPayment: new Date("2024-12-30T00:00:00.000Z"),
         amountPaid: 10000,
