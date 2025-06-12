@@ -5,11 +5,13 @@ export interface InterestInfo {
   remarks: string;
   interestEarned?: number;
   interestEarnedPerDay?: number;
+  payments?: PaymentInfo[];
 }
 
 export interface PaymentInfo {
   dateOfPayment: Date;
   amountPaid: number;
+  paymentType?: string;
 }
 
 export interface PersonData {
@@ -71,18 +73,22 @@ const finData = {
       {
         dateOfPayment: new Date("2025-03-04T00:00:00.000Z"),
         amountPaid: 1400,
+        paymentType: "interest",
       },
       {
         dateOfPayment: new Date("2025-03-04T00:00:00.000Z"),
         amountPaid: 62000,
+        paymentType: "interest",
       },
       {
         dateOfPayment: new Date("2025-03-02T00:00:00.000Z"),
         amountPaid: 20000,
+        paymentType: "interest",
       },
       {
         dateOfPayment: new Date("2025-03-16T00:00:00.000Z"),
         amountPaid: 3200,
+        paymentType: "interest",
       },
     ],
   },
@@ -101,17 +107,22 @@ const finData = {
         dateBorrowed: new Date("2024-08-15T00:00:00.000Z"),
         remarks: "",
       },
-      {
-        amountOwed: 98000,
-        interest: 0,
-        dateBorrowed: new Date("2024-04-14T00:00:00.000Z"),
-        remarks: "Sreethan school fee - through PhonePe",
-      },
     ],
     paymentInfo: [
       {
         dateOfPayment: new Date("2025-06-10T00:00:00.000Z"),
         amountPaid: 50000,
+        paymentType: "interest",
+      },
+      {
+        dateOfPayment: new Date("2025-06-11T00:00:00.000Z"),
+        amountPaid: 70000,
+        paymentType: "Principal",
+      },
+      {
+        dateOfPayment: new Date("2025-06-12T00:00:00.000Z"),
+        amountPaid: 28000,
+        paymentType: "Principal",
       },
     ],
   },
@@ -129,27 +140,33 @@ const finData = {
       {
         dateOfPayment: new Date("2024-09-27T00:00:00.000Z"),
         amountPaid: 10000,
+        paymentType: "interest",
       },
       {
         dateOfPayment: new Date("2024-10-29T00:00:00.000Z"),
         amountPaid: 10000,
+        paymentType: "interest",
       },
       {
         dateOfPayment: new Date("2024-11-27T00:00:00.000Z"),
         amountPaid: 10000,
+        paymentType: "interest",
       },
 
       {
         dateOfPayment: new Date("2024-12-30T00:00:00.000Z"),
         amountPaid: 10000,
+        paymentType: "interest",
       },
       {
         dateOfPayment: new Date("2025-01-30T00:00:00.000Z"),
         amountPaid: 10000,
+        paymentType: "interest",
       },
       {
         dateOfPayment: new Date("2025-02-30T00:00:00.000Z"),
         amountPaid: 10000,
+        paymentType: "interest",
       },
     ],
   },

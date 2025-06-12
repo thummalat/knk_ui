@@ -37,17 +37,26 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
         </Box>
         <Box>
           Interest Earned per day:
-          {formatCurrency(parseFloat((
+          {formatCurrency(
             parseFloat(
-              ((info.amountOwed * info.interest * 365) / (100 * 365)).toFixed(2)
-            ) / 365
-          ).toFixed(3)))}
+              (
+                parseFloat(
+                  (
+                    (info.amountOwed * info.interest * 365) /
+                    (100 * 365)
+                  ).toFixed(2)
+                ) / 365
+              ).toFixed(3)
+            )
+          )}
         </Box>
         <Box>
           Interest Earned per month:
-          {formatCurrency(parseFloat(
-            ((info.amountOwed * info.interest * 365) / (100 * 365)).toFixed(2)
-          ) / 12)}
+          {formatCurrency(
+            parseFloat(
+              ((info.amountOwed * info.interest * 365) / (100 * 365)).toFixed(2)
+            ) / 12
+          )}
         </Box>
       </Box>
       {info.remarks && (

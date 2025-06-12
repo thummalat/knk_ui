@@ -39,14 +39,17 @@ const calculateFinData = (finDetails: TFinData | null) => {
       (total, { interestEarned }) => total + interestEarned,
       0
     );
-    const totalInterestedPaid = paymentInfo.reduce((total, {amountPaid})=> total+amountPaid,0)
+    const totalInterestedPaid = paymentInfo
+      .filter((p) => p.paymentType === "interest")
+      .reduce((total, { amountPaid }) => total + amountPaid, 0);
 
     return {
+      paymentInfo,
       interestInfo: updatedInterestInfo,
       ...otherDetails,
       principal,
       totalInterestedEarned,
-      totalInterestedPaid
+      totalInterestedPaid,
     };
   });
 
@@ -135,10 +138,7 @@ const Fin = () => {
                     </Typography>
 
                     <Grid container sx={{ marginTop: "1rem" }} spacing={2}>
-                      <Grid
-                        size={12}
-                      
-                      >
+                      <Grid size={12}>
                         <Box
                           sx={{
                             color: "#03894b",
@@ -149,14 +149,14 @@ const Fin = () => {
                           Principal: {formatCurrency(d.principal)}
                         </Box>
                       </Grid>
-                      <Grid
-                        size={12}
-                      
-                      >
-                        <Findetails total={d.totalInterestedEarned} paid={d.totalInterestedPaid} />
+                      <Grid size={12}>
+                        <Findetails
+                          total={d.totalInterestedEarned}
+                          paid={d.totalInterestedPaid}
+                        />
                       </Grid>
                       {d.interestInfo.map((info, i) => (
-                        <Borrowbox info={info}/>
+                        <Borrowbox info={info} />
                       ))}
                     </Grid>
                   </CardContent>
