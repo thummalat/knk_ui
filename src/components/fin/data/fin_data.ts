@@ -174,61 +174,7 @@ const finData = {
         paymentType: "interest",
       },
     ],
-  },
-  "Sreenivasa Rao (Gandhi Nagaram)": {
-    name: "Sreenivasa Rao (Gandhi Nagaram)",
-    interestInfo: [
-      {
-        amountOwed: 456608,
-        interest: 12,
-        dateBorrowed: new Date("2025-02-10T00:00:00.000Z"),
-        remarks: "From Prakesh Teksky",
-      },
-      {
-        amountOwed: 100000,
-        interest: 12,
-        dateBorrowed: new Date("2025-03-02T00:00:00.000Z"),
-        remarks: "From Vineela Ponugoti (86.48 exchange rate)",
-      },
-      {
-        amountOwed: 100000,
-        interest: 12,
-        dateBorrowed: new Date("2025-03-03T00:00:00.000Z"),
-        remarks: "From Vineela Ponugoti (86.48 exchange rate)",
-      },
-      {
-        amountOwed: 50000,
-        interest: 12,
-        dateBorrowed: new Date("2025-03-05T00:00:00.000Z"),
-        remarks: "From Vineela Ponugoti (86.48 exchange rate)",
-      },
-      {
-        amountOwed: 250000,
-        interest: 12,
-        dateBorrowed: new Date("2025-03-07T00:00:00.000Z"),
-        remarks: "From Reshma",
-      },
-      {
-        amountOwed: 43400,
-        interest: 12,
-        dateBorrowed: new Date("2025-03-06T00:00:00.000Z"),
-        remarks: "PhonePe from Thanuz",
-      },
-    ],
-    paymentInfo: [],
-  },
-  Bank: {
-    name: "FD",
-    interestInfo: [
-      {
-        amountOwed: 700000,
-        interest: 8,
-        dateBorrowed: new Date("2024-09-01T00:00:00.000Z"),
-        remarks: "This is FD, auto interest deposit in to bank account",
-      },
-    ],
-    paymentInfo: [],
-  },
+  }
 };
 
 export default finData;
