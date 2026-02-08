@@ -115,6 +115,11 @@ const finData = {
         paymentType: "interest",
       },
       {
+        dateOfPayment: new Date("2025-07-01T00:00:00.000Z"),
+        amountPaid: 40000,
+        paymentType: "interest",
+      },
+      {
         dateOfPayment: new Date("2025-06-11T00:00:00.000Z"),
         amountPaid: 70000,
         paymentType: "Principal",
