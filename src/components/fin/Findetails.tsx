@@ -3,7 +3,6 @@ import {
   FormControl,
   FormControlLabel,
   FormGroup,
-  FormLabel,
   Switch,
 } from "@mui/material";
 import { formatCurrency } from "./utils";
