@@ -90,6 +90,11 @@ const finData = {
         amountPaid: 3200,
         paymentType: "interest",
       },
+      {
+        dateOfPayment: new Date("2026-02-24T00:00:00.000Z"),
+        amountPaid: 100000,
+        paymentType: "interest",
+      },
     ],
   },
   Dinesh: {
@@ -138,7 +143,7 @@ const finData = {
         amountOwed: 1000000,
         interest: 12,
         dateBorrowed: new Date("2024-08-26T00:00:00.000Z"),
-        remarks: "",
+        remarks: "Interest will be paid every month to Dad",
       },
     ],
     paymentInfo: [
