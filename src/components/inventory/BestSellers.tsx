@@ -1,8 +1,8 @@
 import {
   Box,
-  Button,
+
   Card,
-  CardActions,
+
   CardContent,
   Paper,
   Typography,
@@ -11,7 +11,7 @@ import Grid from "@mui/material/Grid2";
 import { useFetchBestSellers } from "../../hooks/useFetchBestSellers";
 
 const BestSellers = () => {
-  const { data, isLoading } = useFetchBestSellers();
+  const { data } = useFetchBestSellers();
 
   return (
     <Paper elevation={2} sx={{ marginTop: "2rem", background: "white" }}>

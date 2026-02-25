@@ -1,4 +1,4 @@
-import { Box, Button, Container, Paper, Typography } from "@mui/material";
+import { Box, Button, Paper, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useFetchProducts } from "../../hooks/useFetchProducts";
@@ -13,7 +13,7 @@ const InventoryDetails = () => {
   const [openViewDetails, setOpenViewDetails] = useState(false);
   const [selectedRowData, setSelectedRowData] =
     useState<IViewDetailsMetaData | null>(null);
-  const { isLoading, data: productsData } = useFetchProducts();
+  const { data: productsData } = useFetchProducts();
   // Function to determine if the screen is large
   const checkScreenSize = () => {
     const width = window.innerWidth;
