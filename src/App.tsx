@@ -17,7 +17,8 @@ const App = () => {
         }}
       >
         <Routes>
-          <Route path="/" element={<InventoryDetails />}></Route>
+          <Route path="/" element={<Fin />}></Route>
+          {/* <Route path="/" element={<InventoryDetails />}></Route> */}
           <Route path="/orders" element={<Orders />}></Route>
           <Route path="/fin" element={<Fin />}></Route>
         </Routes>

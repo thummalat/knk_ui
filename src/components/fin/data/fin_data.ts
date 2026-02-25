@@ -179,6 +179,18 @@ const finData = {
         paymentType: "interest",
       },
     ],
+  },
+  RajeshCousin:{
+     name: "Rajesh Cousin",
+    interestInfo: [
+      {
+        amountOwed: 1000000,
+        interest: 18,
+        dateBorrowed: new Date("2026-02-25T00:00:00.000Z"),
+        remarks: "",
+      },
+    ],
+     paymentInfo: []
   }
 };
 
