@@ -4,6 +4,7 @@ import {
   Card,
   CardContent,
   Paper,
+  Stack,
   TextField,
   Typography,
 } from "@mui/material";
@@ -27,17 +28,17 @@ const calculateFinData = (finDetails: TFinData | null) => {
       ...info,
       interestEarned: Math.floor(
         (info.amountOwed * info.interest * daysFromToday(info.dateBorrowed)) /
-          (100 * DAYS_IN_YEAR)
+          (100 * DAYS_IN_YEAR),
       ),
     }));
 
     const principal = updatedInterestInfo.reduce(
       (total, { amountOwed }) => total + amountOwed,
-      0
+      0,
     );
     const totalInterestedEarned = updatedInterestInfo.reduce(
       (total, { interestEarned }) => total + interestEarned,
-      0
+      0,
     );
     const totalInterestedPaid = paymentInfo
       .filter((p) => p.paymentType === "interest")
@@ -62,11 +63,16 @@ const Fin = () => {
   const [showFinDetails, setShowFinDetails] = useState(false);
   const [passcode, setPasscode] = useState("");
   const [finDetails] = useState<TFinData | null>(finData);
+  const [showHeaderAmountDetails, setShowHeaderAmountDetails] = useState(false);
 
   const { data, sumAmount } = useMemo(
     () => calculateFinData(finDetails),
-    [finDetails]
+    [finDetails],
   );
+
+  const totalInterestEarnedOverall = data.reduce((sum, item) => {
+    return sum + (item.totalInterestedEarned || 0);
+  }, 0);
 
   const handlePasscodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasscode(e.target.value);
@@ -115,13 +121,38 @@ const Fin = () => {
 
         {showFinDetails && data.length > 0 && (
           <>
-            <Grid size={12}>
-              <Typography
-                variant="h6"
-                sx={{ color: "#97040b", fontWeight: 700 }}
+            <Grid sx={{ backgroundColor: "#dfeaed" }} size={12}>
+              <Stack
+                direction={"row"}
+                alignItems={"center"}
+                justifyContent={"space-between"}
+                sx={{ gap: 2, p: 2 }}
               >
-                Total Amount: {formatCurrency(sumAmount)}
-              </Typography>
+                <Typography variant="h6" style={{ color: "purple" }}>
+                  {" "}
+                  Total AmountOverall (Principle+Interest):{" "}
+                  {formatCurrency(sumAmount + totalInterestEarnedOverall)}
+                </Typography>
+                <Button
+                  variant="outlined"
+                  onClick={() => setShowHeaderAmountDetails(!showHeaderAmountDetails)}
+                >
+                  {showHeaderAmountDetails?"Hide Details" :"Show details"}
+                </Button>
+              </Stack>
+              {showHeaderAmountDetails && (
+                <Stack sx={{p:2, gap:3, borderTop:"1px solid gray"}} direction={"row"}>
+                  <Typography style={{ color: "blue", fontWeight:500 }}>
+                    {" "}
+                    Total Principal Amount: {formatCurrency(sumAmount)}
+                  </Typography>
+                  <Typography  style={{ color: "green", fontWeight:500 }}>
+                    {" "}
+                    Total Interest Earned:{" "}
+                    {formatCurrency(totalInterestEarnedOverall)}
+                  </Typography>
+                </Stack>
+              )}
             </Grid>
             {data.map((d, index) => (
               <Grid size={12} key={index}>
