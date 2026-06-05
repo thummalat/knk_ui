@@ -35,8 +35,8 @@ export const otherFinData = [
   {
     name: "Gold investment",
     dateInvested: new Date("2024-09-01T00:00:00.000Z"),
-    amountInvested: 2960000,
-    remarks: "400 grams, ₹7400 per gram",
+    amountInvested: 1480000,
+    remarks: "200 grams, ₹7400 per gram",
   },
   {
     name: "Shadnagar Land",
@@ -48,7 +48,13 @@ export const otherFinData = [
     name: "Machilipatnam Land",
     dateInvested: new Date("2024-09-01T00:00:00.000Z"),
     amountInvested: 700000,
-    remarks: "4500 per sq yard",
+    remarks: " 155 sq yards,4500 per sq yard",
+  },
+  {
+    name: "Butterfly Land",
+    dateInvested: new Date("2025-07-01T00:00:00.000Z"),
+    amountInvested: 8000000,
+    remarks: "500 Sq Yards, 15500 per sq yard",
   },
 ];
 
@@ -70,6 +76,16 @@ const finData = {
       },
     ],
     paymentInfo: [
+       {
+        dateOfPayment: new Date("2026-04-25T00:00:00.000Z"),
+        amountPaid: 6000,
+        paymentType: "interest",
+      },
+       {
+        dateOfPayment: new Date("2026-02-27T00:00:00.000Z"),
+        amountPaid: 32000,
+        paymentType: "interest",
+      },
       {
         dateOfPayment: new Date("2025-03-04T00:00:00.000Z"),
         amountPaid: 1400,
