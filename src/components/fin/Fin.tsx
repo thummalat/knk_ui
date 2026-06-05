@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
@@ -77,8 +76,6 @@ const Fin = () => {
   const [passcode, setPasscode] = useState("");
   const [finDetails] = useState<TFinData | null>(finData);
   const [showHeaderAmountDetails, setShowHeaderAmountDetails] = useState(false);
-  const [isInvestmentAllocationCollapsed, setIsInvestmentAllocationCollapsed] =
-    useState(false);
   const [isLendingSectionCollapsed, setIsLendingSectionCollapsed] =
     useState(false);
   const [isOtherInvestmentsCollapsed, setIsOtherInvestmentsCollapsed] =
@@ -86,9 +83,6 @@ const Fin = () => {
   const [collapsedLendingTiles, setCollapsedLendingTiles] = useState<
     Record<string, boolean>
   >({});
-  const [hoveredInvestmentKey, setHoveredInvestmentKey] = useState<
-    string | null
-  >(null);
 
   const { data, sumAmount } = useMemo(
     () => calculateFinData(finDetails),
@@ -103,41 +97,6 @@ const Fin = () => {
     0,
   );
   const portfolioTotal = sumAmount + totalOtherInvestments;
-  const investmentChartData = [
-    ...data.map((item) => ({
-      amount: item.principal,
-      color: "#2ec4b6",
-      name: item.name,
-      type: "Lending",
-    })),
-    ...otherFinData.map((item, index) => {
-      const colors = ["#7c3aed", "#f59e0b", "#0ea5e9"];
-
-      return {
-        amount: item.amountInvested,
-        color: colors[index % colors.length],
-        name: item.name,
-        type: "Long-hold",
-      };
-    }),
-  ].sort((a, b) => b.amount - a.amount);
-  let investmentChartOffset = 0;
-  const investmentChartSegments = investmentChartData.map((item) => {
-    const percentage =
-      portfolioTotal > 0 ? (item.amount / portfolioTotal) * 100 : 0;
-    const segment = {
-      ...item,
-      key: `${item.type}-${item.name}`,
-      offset: investmentChartOffset,
-      percentage,
-    };
-
-    investmentChartOffset += percentage;
-    return segment;
-  });
-  const hoveredInvestment = investmentChartSegments.find(
-    (item) => item.key === hoveredInvestmentKey,
-  );
 
   const handlePasscodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasscode(e.target.value);
@@ -152,10 +111,6 @@ const Fin = () => {
       ...current,
       [name]: !current[name],
     }));
-  };
-
-  const handleSelectInvestment = (key: string) => {
-    setHoveredInvestmentKey((current) => (current === key ? null : key));
   };
 
   return (
@@ -305,7 +260,7 @@ const Fin = () => {
 
         {showFinDetails && data.length > 0 && (
           <>
-            <Grid size={12}>
+            <Grid size={12} sx={{ display: { xs: "none", md: "block" } }}>
               <Box
                 sx={{
                   backgroundColor: "white",
@@ -415,395 +370,6 @@ const Fin = () => {
                   </Grid>
                 )}
               </Box>
-            </Grid>
-            <Grid size={12}>
-              <Card
-                elevation={0}
-                sx={{
-                  backgroundColor: "#f8fbfc",
-                  borderRadius: 2,
-                  boxShadow: "0 10px 28px rgba(9, 66, 82, 0.06)",
-                  overflow: "hidden",
-                }}
-              >
-                <CardContent sx={{ padding: 0 }}>
-                  <Stack
-                    direction={{ xs: "column", sm: "row" }}
-                    alignItems={{ xs: "flex-start", sm: "center" }}
-                    justifyContent="space-between"
-                    sx={{
-                      background:
-                        "linear-gradient(135deg, #12355b 0%, #2d5f80 52%, #6aa6b8 100%)",
-                      color: "white",
-                      gap: 2,
-                      padding: 2.5,
-                    }}
-                  >
-                    <Stack direction="row" alignItems="center" sx={{ gap: 1.5 }}>
-                      <Box
-                        sx={{
-                          alignItems: "center",
-                          backgroundColor: "rgba(255, 255, 255, 0.16)",
-                          borderRadius: 2,
-                          display: "flex",
-                          height: 44,
-                          justifyContent: "center",
-                          width: 44,
-                        }}
-                      >
-                        <BarChartOutlinedIcon />
-                      </Box>
-                      <Box>
-                        <Typography
-                          sx={{
-                            fontSize: "1.35rem",
-                            fontWeight: 700,
-                            lineHeight: 1.15,
-                          }}
-                        >
-                          Investment Allocation
-                        </Typography>
-                        <Typography
-                          sx={{
-                            color: "rgba(255, 255, 255, 0.78)",
-                            fontSize: "0.9rem",
-                            marginTop: 0.35,
-                          }}
-                        >
-                          Lending and long-hold assets by amount
-                        </Typography>
-                      </Box>
-                    </Stack>
-                    <Stack
-                      direction="row"
-                      alignItems="center"
-                      sx={{ gap: 1, width: { xs: "100%", sm: "auto" } }}
-                    >
-                      <Box
-                        sx={{
-                          backgroundColor: "rgba(255, 255, 255, 0.14)",
-                          borderRadius: 2,
-                          flex: { xs: 1, sm: "0 0 auto" },
-                          minWidth: { xs: 0, sm: 220 },
-                          padding: "0.9rem 1rem",
-                        }}
-                      >
-                        <Typography
-                          sx={{
-                            color: "rgba(255, 255, 255, 0.72)",
-                            fontSize: "0.72rem",
-                            fontWeight: 700,
-                            textTransform: "uppercase",
-                          }}
-                        >
-                          Total Shown
-                        </Typography>
-                        <Typography sx={{ fontSize: "1.25rem", fontWeight: 800 }}>
-                          {formatCurrency(portfolioTotal)}
-                        </Typography>
-                      </Box>
-                      <IconButton
-                        onClick={() =>
-                          setIsInvestmentAllocationCollapsed(
-                            !isInvestmentAllocationCollapsed,
-                          )
-                        }
-                        aria-label={
-                          isInvestmentAllocationCollapsed
-                            ? "Expand Investment Allocation section"
-                            : "Collapse Investment Allocation section"
-                        }
-                        sx={{
-                          backgroundColor: "rgba(255, 255, 255, 0.14)",
-                          borderRadius: 2,
-                          color: "white",
-                          flex: "0 0 auto",
-                          height: 44,
-                          width: 44,
-                          "&:hover": {
-                            backgroundColor: "rgba(255, 255, 255, 0.22)",
-                          },
-                        }}
-                      >
-                        {isInvestmentAllocationCollapsed ? (
-                          <KeyboardArrowDownOutlinedIcon />
-                        ) : (
-                          <KeyboardArrowUpOutlinedIcon />
-                        )}
-                      </IconButton>
-                    </Stack>
-                  </Stack>
-                  <Collapse
-                    in={!isInvestmentAllocationCollapsed}
-                    timeout="auto"
-                    unmountOnExit
-                  >
-                    <Grid
-                      container
-                      spacing={2}
-                      sx={{
-                        alignItems: "center",
-                        backgroundColor: "#f7f9fb",
-                        padding: 2,
-                      }}
-                    >
-                      <Grid size={{ xs: 12, md: 5 }}>
-                      <Box
-                        sx={{
-                          alignItems: "center",
-                          display: "flex",
-                          justifyContent: "center",
-                          minHeight: 260,
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            height: { xs: 240, sm: 290 },
-                            position: "relative",
-                            width: { xs: 240, sm: 290 },
-                          }}
-                        >
-                          <Box
-                            component="svg"
-                            viewBox="0 0 240 240"
-                            sx={{
-                              display: "block",
-                              height: "100%",
-                              overflow: "visible",
-                              width: "100%",
-                            }}
-                          >
-                            <Box
-                              component="circle"
-                              cx="120"
-                              cy="120"
-                              r="86"
-                              fill="none"
-                              stroke="#e8f1f3"
-                              strokeWidth="48"
-                            />
-                            {investmentChartSegments.map((segment) => {
-                              const isActive =
-                                hoveredInvestmentKey === segment.key;
-                              const isDimmed =
-                                hoveredInvestmentKey !== null && !isActive;
-
-                              return (
-                                <Box
-                                  component="circle"
-                                  key={segment.key}
-                                  cx="120"
-                                  cy="120"
-                                  r="86"
-                                  fill="none"
-                                  pathLength="100"
-                                  stroke={segment.color}
-                                  strokeDasharray={`${segment.percentage} ${
-                                    100 - segment.percentage
-                                  }`}
-                                  strokeDashoffset={-segment.offset}
-                                  strokeLinecap="butt"
-                                  strokeWidth={isActive ? 54 : 48}
-                                  transform="rotate(-90 120 120)"
-	                                  onMouseEnter={() =>
-	                                    setHoveredInvestmentKey(segment.key)
-	                                  }
-	                                  onMouseLeave={() => setHoveredInvestmentKey(null)}
-                                      onClick={() =>
-                                        handleSelectInvestment(segment.key)
-                                      }
-                                      onFocus={() =>
-                                        setHoveredInvestmentKey(segment.key)
-                                      }
-                                      onBlur={() => setHoveredInvestmentKey(null)}
-                                      onKeyDown={(event) => {
-                                        if (
-                                          event.key === "Enter" ||
-                                          event.key === " "
-                                        ) {
-                                          event.preventDefault();
-                                          handleSelectInvestment(segment.key);
-                                        }
-                                      }}
-                                      role="button"
-                                      tabIndex={0}
-	                                  sx={{
-	                                    cursor: "pointer",
-                                    opacity: isDimmed ? 0.42 : 1,
-                                    transition:
-                                      "opacity 160ms ease, stroke-width 160ms ease",
-                                  }}
-                                />
-                              );
-                            })}
-                          </Box>
-                          <Box
-                            sx={{
-                              alignItems: "center",
-                              backgroundColor: "#f7f9fb",
-                              borderRadius: "50%",
-                              boxShadow: "inset 0 0 0 1px rgba(9, 66, 82, 0.04)",
-                              display: "flex",
-                              flexDirection: "column",
-                              height: "48%",
-                              justifyContent: "center",
-                              left: "26%",
-                              padding: 2,
-                              position: "absolute",
-                              textAlign: "center",
-                              top: "26%",
-                              width: "48%",
-                            }}
-                          >
-                            <Typography
-                              variant="caption"
-                              sx={{
-                                color: "#176d74",
-                                fontWeight: 800,
-                                textTransform: "uppercase",
-                              }}
-                            >
-                              {hoveredInvestment ? hoveredInvestment.type : "Total"}
-                            </Typography>
-                            <Typography
-                              sx={{
-                                color: "#094252",
-                                fontSize: "1rem",
-                                fontWeight: 900,
-                              }}
-                            >
-                              {formatCurrency(
-                                hoveredInvestment?.amount || portfolioTotal,
-                              )}
-                            </Typography>
-                            <Typography
-                              color="text.secondary"
-                              sx={{
-                                fontSize: "0.76rem",
-                                fontWeight: 700,
-                                marginTop: 0.35,
-                                maxWidth: 130,
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
-                                whiteSpace: "nowrap",
-                              }}
-                            >
-                              {hoveredInvestment
-                                ? `${hoveredInvestment.name} (${hoveredInvestment.percentage.toFixed(
-                                    1,
-                                  )}%)`
-                                : "Portfolio"}
-                            </Typography>
-                          </Box>
-                        </Box>
-                      </Box>
-                      </Grid>
-                      <Grid size={{ xs: 12, md: 7 }}>
-                      <Stack sx={{ gap: 1 }}>
-                        {investmentChartSegments.map((item) => {
-                          const portfolioShare =
-                            portfolioTotal > 0
-                              ? (item.amount / portfolioTotal) * 100
-                              : 0;
-                          const isActive = hoveredInvestmentKey === item.key;
-
-                          return (
-                            <Stack
-                              key={item.key}
-                              direction="row"
-                              alignItems="center"
-	                              justifyContent="space-between"
-	                              onMouseEnter={() => setHoveredInvestmentKey(item.key)}
-	                              onMouseLeave={() => setHoveredInvestmentKey(null)}
-                                  onClick={() => handleSelectInvestment(item.key)}
-                                  onFocus={() => setHoveredInvestmentKey(item.key)}
-                                  onBlur={() => setHoveredInvestmentKey(null)}
-                                  onKeyDown={(event) => {
-                                    if (
-                                      event.key === "Enter" ||
-                                      event.key === " "
-                                    ) {
-                                      event.preventDefault();
-                                      handleSelectInvestment(item.key);
-                                    }
-                                  }}
-                                  role="button"
-                                  tabIndex={0}
-	                              sx={{
-                                backgroundColor: isActive ? "#edf8f5" : "white",
-                                borderRadius: 2,
-                                boxShadow: isActive
-                                  ? "0 10px 24px rgba(9, 66, 82, 0.1)"
-                                  : "0 6px 18px rgba(9, 66, 82, 0.04)",
-                                cursor: "pointer",
-                                gap: 1.5,
-                                padding: 1.25,
-                                transition:
-                                  "background-color 160ms ease, box-shadow 160ms ease",
-                              }}
-                            >
-                              <Stack
-                                direction="row"
-                                alignItems="center"
-                                sx={{ gap: 1.25, minWidth: 0 }}
-                              >
-                                <Box
-                                  sx={{
-                                    backgroundColor: item.color,
-                                    borderRadius: "50%",
-                                    flex: "0 0 auto",
-                                    height: 12,
-                                    width: 12,
-                                  }}
-                                />
-                                <Box sx={{ minWidth: 0 }}>
-                                  <Typography
-                                    sx={{
-                                      color: "#094252",
-                                      fontWeight: 800,
-                                      overflow: "hidden",
-                                      textOverflow: "ellipsis",
-                                      whiteSpace: "nowrap",
-                                    }}
-                                  >
-                                    {item.name}
-                                  </Typography>
-                                  <Typography
-                                    sx={{
-                                      color: item.color,
-                                      fontSize: "0.74rem",
-                                      fontWeight: 800,
-                                      textTransform: "uppercase",
-                                    }}
-                                  >
-                                    {item.type}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                              <Box
-                                sx={{
-                                  flex: "0 0 auto",
-                                  textAlign: "right",
-                                }}
-                              >
-                                <Typography
-                                  sx={{ color: "#094252", fontWeight: 900 }}
-                                >
-                                  {formatCurrency(item.amount)}
-                                </Typography>
-                                <Typography color="text.secondary" variant="body2">
-                                  {portfolioShare.toFixed(1)}%
-                                </Typography>
-                              </Box>
-                            </Stack>
-                          );
-                        })}
-                      </Stack>
-                      </Grid>
-                    </Grid>
-                  </Collapse>
-                </CardContent>
-              </Card>
             </Grid>
             <Grid size={12}>
               <Card
