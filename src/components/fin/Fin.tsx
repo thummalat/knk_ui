@@ -154,6 +154,10 @@ const Fin = () => {
     }));
   };
 
+  const handleSelectInvestment = (key: string) => {
+    setHoveredInvestmentKey((current) => (current === key ? null : key));
+  };
+
   return (
     <Paper
       elevation={0}
@@ -601,12 +605,30 @@ const Fin = () => {
                                   strokeLinecap="butt"
                                   strokeWidth={isActive ? 54 : 48}
                                   transform="rotate(-90 120 120)"
-                                  onMouseEnter={() =>
-                                    setHoveredInvestmentKey(segment.key)
-                                  }
-                                  onMouseLeave={() => setHoveredInvestmentKey(null)}
-                                  sx={{
-                                    cursor: "pointer",
+	                                  onMouseEnter={() =>
+	                                    setHoveredInvestmentKey(segment.key)
+	                                  }
+	                                  onMouseLeave={() => setHoveredInvestmentKey(null)}
+                                      onClick={() =>
+                                        handleSelectInvestment(segment.key)
+                                      }
+                                      onFocus={() =>
+                                        setHoveredInvestmentKey(segment.key)
+                                      }
+                                      onBlur={() => setHoveredInvestmentKey(null)}
+                                      onKeyDown={(event) => {
+                                        if (
+                                          event.key === "Enter" ||
+                                          event.key === " "
+                                        ) {
+                                          event.preventDefault();
+                                          handleSelectInvestment(segment.key);
+                                        }
+                                      }}
+                                      role="button"
+                                      tabIndex={0}
+	                                  sx={{
+	                                    cursor: "pointer",
                                     opacity: isDimmed ? 0.42 : 1,
                                     transition:
                                       "opacity 160ms ease, stroke-width 160ms ease",
@@ -690,10 +712,24 @@ const Fin = () => {
                               key={item.key}
                               direction="row"
                               alignItems="center"
-                              justifyContent="space-between"
-                              onMouseEnter={() => setHoveredInvestmentKey(item.key)}
-                              onMouseLeave={() => setHoveredInvestmentKey(null)}
-                              sx={{
+	                              justifyContent="space-between"
+	                              onMouseEnter={() => setHoveredInvestmentKey(item.key)}
+	                              onMouseLeave={() => setHoveredInvestmentKey(null)}
+                                  onClick={() => handleSelectInvestment(item.key)}
+                                  onFocus={() => setHoveredInvestmentKey(item.key)}
+                                  onBlur={() => setHoveredInvestmentKey(null)}
+                                  onKeyDown={(event) => {
+                                    if (
+                                      event.key === "Enter" ||
+                                      event.key === " "
+                                    ) {
+                                      event.preventDefault();
+                                      handleSelectInvestment(item.key);
+                                    }
+                                  }}
+                                  role="button"
+                                  tabIndex={0}
+	                              sx={{
                                 backgroundColor: isActive ? "#edf8f5" : "white",
                                 borderRadius: 2,
                                 boxShadow: isActive
