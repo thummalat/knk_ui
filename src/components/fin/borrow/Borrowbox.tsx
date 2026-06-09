@@ -32,7 +32,7 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
       size={{ xs: 12, sm: 6 }}
       sx={{
         backgroundColor: "#ffffff",
-        borderRadius: 2,
+        borderRadius: 0,
         boxShadow: {
           xs: "0 4px 12px rgba(9, 66, 82, 0.04)",
           sm: "0 8px 22px rgba(9, 66, 82, 0.05)",
@@ -47,29 +47,71 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
         justifyContent="space-between"
         sx={{ gap: { xs: 1, sm: 1.5 } }}
       >
-        <Box>
+        <Box sx={{ minWidth: 0 }}>
           <Typography
             variant="caption"
             sx={{ color: "#176d74", fontWeight: 800, textTransform: "uppercase" }}
           >
             Amount Owed
           </Typography>
-          <Typography
-            sx={{
-              color: "#094252",
-              fontSize: { xs: "1.1rem", sm: "1.35rem" },
-              fontWeight: 900,
-              marginTop: { xs: 0.15, sm: 0.25 },
-            }}
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            alignItems={{ xs: "flex-start", sm: "center" }}
+            sx={{ gap: { xs: 0.5, sm: 1.5 }, marginTop: { xs: 0.15, sm: 0.25 } }}
           >
-            {formatCurrency(info.amountOwed)}
-          </Typography>
+            <Typography
+              sx={{
+                color: "#094252",
+                fontSize: { xs: "1.1rem", sm: "1.35rem" },
+                fontWeight: 900,
+              }}
+            >
+              {formatCurrency(info.amountOwed)}
+            </Typography>
+            <Stack
+              direction="row"
+              alignItems="center"
+              sx={{
+                backgroundColor: "#f3f8fa",
+                borderRadius: 0,
+                color: "#4b646a",
+                gap: 0.6,
+                padding: { xs: "0.35rem 0.55rem", sm: "0.4rem 0.65rem" },
+              }}
+            >
+              <CalendarMonthOutlinedIcon sx={{ color: "#176d74", fontSize: 18 }} />
+              <Box>
+                <Typography
+                  sx={{
+                    color: "#6b7d82",
+                    fontSize: { xs: "0.58rem", sm: "0.62rem" },
+                    fontWeight: 800,
+                    lineHeight: 1,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Borrowed Date
+                </Typography>
+                <Typography
+                  sx={{
+                    color: "#094252",
+                    fontSize: { xs: "0.78rem", sm: "0.84rem" },
+                    fontWeight: 800,
+                    lineHeight: 1.25,
+                    marginTop: 0.25,
+                  }}
+                >
+                  {info.dateBorrowed ? formatDate(info.dateBorrowed) : "N/A"}
+                </Typography>
+              </Box>
+            </Stack>
+          </Stack>
         </Box>
         <Box
           sx={{
             alignItems: "center",
             backgroundColor: "#eaf7f5",
-            borderRadius: 2,
+            borderRadius: 0,
             color: "#176d74",
             display: "flex",
             height: { xs: 34, sm: 40 },
@@ -88,11 +130,6 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
             value: `${info.interest}%`,
           },
           {
-            icon: <CalendarMonthOutlinedIcon fontSize="small" />,
-            label: "Borrowed",
-            value: info.dateBorrowed ? formatDate(info.dateBorrowed) : "N/A",
-          },
-          {
             icon: <TimelapseOutlinedIcon fontSize="small" />,
             label: "Duration",
             value: monthsAndDaysFromToday(info.dateBorrowed),
@@ -109,7 +146,7 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
               alignItems="center"
               sx={{
                 backgroundColor: "#f3f8fa",
-                borderRadius: 2,
+                borderRadius: 0,
                 color: "#4b646a",
                 gap: 0.75,
                 padding: { xs: 0.75, sm: 1 },
@@ -144,7 +181,7 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
       <Box
         sx={{
           background: "#edf8f5",
-          borderRadius: 2,
+          borderRadius: 0,
           marginTop: { xs: "0.75rem", sm: "1rem" },
           padding: { xs: "0.8rem", sm: "1rem" },
         }}
@@ -179,7 +216,7 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
           alignItems="flex-start"
           sx={{
             backgroundColor: "#fff7e8",
-            borderRadius: 2,
+            borderRadius: 0,
             color: "#7a3f00",
             gap: 0.75,
             marginTop: { xs: "0.75rem", sm: "1rem" },

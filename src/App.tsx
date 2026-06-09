@@ -12,9 +12,11 @@ const App = () => {
       <CssBaseline />
       <Header />
       <Container
+        maxWidth={false}
+        disableGutters
         sx={{
           paddingBottom: { xs: "0.75rem", sm: "1rem" },
-          px: { xs: 1, sm: 3 },
+          px: 0,
         }}
       >
         <Routes>

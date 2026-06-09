@@ -1,5 +1,4 @@
 import { AppBar, Box, Stack, Toolbar, Typography } from "@mui/material";
-import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import SavingsOutlinedIcon from "@mui/icons-material/SavingsOutlined";
 
 const Header = () => {
@@ -9,9 +8,9 @@ const Header = () => {
         elevation={0}
         position="static"
         sx={{
-          background:
-            "linear-gradient(135deg, #ffffff 0%, #f3f8fa 52%, #e8f6f4 100%)",
-          boxShadow: "0 8px 28px rgba(9, 66, 82, 0.08)",
+          backgroundColor: "#ffffff",
+          borderBottom: "1px solid #d7e8ec",
+          boxShadow: "none",
           color: "#094252",
           width: "100%",
         }}
@@ -27,9 +26,8 @@ const Header = () => {
             <Box
               sx={{
                 alignItems: "center",
-                background:
-                  "linear-gradient(135deg, #094252 0%, #176d74 58%, #2ec4b6 100%)",
-                borderRadius: 2,
+                backgroundColor: "#094252",
+                borderRadius: 0,
                 color: "white",
                 display: "flex",
                 height: { xs: 38, sm: 46 },
@@ -50,7 +48,7 @@ const Header = () => {
                   lineHeight: 1.05,
                 }}
               >
-                KAANUKA
+                FIN
               </Typography>
               <Typography
                 sx={{
@@ -63,23 +61,6 @@ const Header = () => {
                 Personal finance overview
               </Typography>
             </Box>
-          </Stack>
-          <Stack
-            direction="row"
-            alignItems="center"
-            sx={{
-              backgroundColor: "#edf8f5",
-              borderRadius: 999,
-              color: "#176d74",
-              display: { xs: "none", sm: "flex" },
-              gap: 0.8,
-              padding: "0.55rem 0.9rem",
-            }}
-          >
-            <AccountBalanceWalletOutlinedIcon fontSize="small" />
-            <Typography sx={{ fontSize: "0.85rem", fontWeight: 800 }}>
-              Finance Dashboard
-            </Typography>
           </Stack>
         </Toolbar>
       </AppBar>

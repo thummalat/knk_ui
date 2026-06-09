@@ -75,7 +75,7 @@ const Findetails = ({
         <Box
           sx={{
             backgroundColor: "#ffffff",
-            borderRadius: 2,
+            borderRadius: 0,
             boxShadow: {
               xs: "0 4px 12px rgba(9, 66, 82, 0.04)",
               sm: "0 8px 22px rgba(9, 66, 82, 0.05)",
@@ -111,7 +111,7 @@ const Findetails = ({
                   }}
                   sx={{
                     backgroundColor: item.isClickable ? "#edf8f5" : "#f3f8fa",
-                    borderRadius: 2,
+                    borderRadius: 0,
                     cursor: item.isClickable ? "pointer" : "default",
                     height: "100%",
                     padding: { xs: 1, sm: 1.25 },
@@ -157,15 +157,14 @@ const Findetails = ({
         fullWidth
         sx={{
           "& .MuiDialog-paper": {
-            borderRadius: 3,
+            borderRadius: 0,
             overflow: "hidden",
           },
         }}
       >
         <DialogTitle
           sx={{
-            background:
-              "linear-gradient(135deg, #094252 0%, #176d74 58%, #2ec4b6 100%)",
+            backgroundColor: "#094252",
             color: "white",
             fontWeight: 800,
           }}
@@ -181,7 +180,7 @@ const Findetails = ({
               <Box
                 sx={{
                   backgroundColor: "white",
-                  borderRadius: 2,
+                  borderRadius: 0,
                   boxShadow: "0 8px 22px rgba(9, 66, 82, 0.05)",
                   marginBottom: 2,
                   padding: 2,
@@ -213,7 +212,7 @@ const Findetails = ({
                 sx={{
                   backgroundColor: "white",
                   border: "1px solid #d9e8eb",
-                  borderRadius: 2,
+                  borderRadius: 0,
                   boxShadow: "0 8px 22px rgba(9, 66, 82, 0.05)",
                   overflow: "hidden",
                 }}
@@ -279,7 +278,7 @@ const Findetails = ({
           <Button
             onClick={() => setShowPayments(false)}
             variant="contained"
-            sx={{ borderRadius: 2, boxShadow: "none", fontWeight: 800 }}
+            sx={{ borderRadius: 0, boxShadow: "none", fontWeight: 800 }}
           >
             Close
           </Button>

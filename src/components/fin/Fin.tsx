@@ -119,16 +119,16 @@ const Fin = () => {
       sx={{
         background: "#f3f8fa",
         border: "1px solid #d7e8ec",
-        borderRadius: { xs: 2, sm: 3 },
-        boxShadow: "0 18px 50px rgba(9, 66, 82, 0.09)",
-        marginTop: { xs: "0.75rem", sm: "1rem" },
+        borderTop: 0,
+        borderRadius: 0,
+        boxShadow: "none",
+        margin: "1rem",
         overflow: "hidden",
       }}
     >
       <Box
         sx={{
-          background:
-            "linear-gradient(135deg, #094252 0%, #176d74 52%, #2ec4b6 100%)",
+          backgroundColor: "#094252",
           color: "white",
           padding: { xs: 1.5, sm: 3 },
         }}
@@ -167,7 +167,7 @@ const Fin = () => {
                 alignItems: "center",
                 backgroundColor: "rgba(255, 255, 255, 0.14)",
                 border: "1px solid rgba(255, 255, 255, 0.24)",
-                borderRadius: 2,
+                borderRadius: 0,
                 display: "flex",
                 gap: 0.75,
                 padding: { xs: "0.55rem 0.7rem", sm: "0.75rem 1rem" },
@@ -186,7 +186,7 @@ const Fin = () => {
                 backgroundColor: "white",
                 
                 border: "1px solid rgba(255, 255, 255, 0.24)",
-                borderRadius: 2,
+                borderRadius: 0,
                 gap: 1,
                 padding: { xs: "0.55rem", sm: "0.65rem" },
                 width: { xs: "100%", sm: "auto" },
@@ -212,7 +212,7 @@ const Fin = () => {
                   },
                   "& .MuiOutlinedInput-root": {
                     backgroundColor: "rgba(255, 255, 255, 0.96)",
-                    borderRadius: 2,
+                    borderRadius: 0,
                   },
                 }}
               />
@@ -222,7 +222,7 @@ const Fin = () => {
                 startIcon={<LockOutlinedIcon />}
                 sx={{
                   backgroundColor: "white",
-                  borderRadius: 2,
+                  borderRadius: 0,
                   boxShadow: "none",
                   color: "#094252",
                   fontWeight: 800,
@@ -243,7 +243,7 @@ const Fin = () => {
       <Grid
         container
         spacing={{ xs: 1.25, sm: 3 }}
-        sx={{ padding: { xs: "0.75rem", sm: "1.25rem" }, justifyContent: "center" }}
+        sx={{ padding: 0, justifyContent: "center" }}
       >
         {showFinDetails && data.length > 0 && (
           <>
@@ -252,7 +252,7 @@ const Fin = () => {
                 sx={{
                   backgroundColor: "white",
                   border: "1px solid #dce9ec",
-                  borderRadius: 2,
+                  borderRadius: 0,
                   boxShadow: "0 10px 28px rgba(9, 66, 82, 0.06)",
                   overflow: "hidden",
                 }}
@@ -300,7 +300,7 @@ const Fin = () => {
                     sx={{
                       backgroundColor: "white",
                       borderColor: "#b8d8df",
-                      borderRadius: 2,
+                      borderRadius: 0,
                       color: "#094252",
                       fontWeight: 800,
                     }}
@@ -331,7 +331,7 @@ const Fin = () => {
                         <Box
                           sx={{
                             backgroundColor: "#f8fbfc",
-                            borderRadius: 2,
+                            borderRadius: 0,
                             padding: 1.5,
                           }}
                         >
@@ -363,7 +363,7 @@ const Fin = () => {
                 variant="outlined"
                 sx={{
                   backgroundColor: "#f8fbfc",
-                  borderRadius: 2,
+                  borderRadius: 0,
                   boxShadow: {
                     xs: "0 6px 18px rgba(9, 66, 82, 0.06)",
                     sm: "0 10px 28px rgba(9, 66, 82, 0.08)",
@@ -377,8 +377,7 @@ const Fin = () => {
                     alignItems={{ xs: "flex-start", sm: "center" }}
                     justifyContent="space-between"
                     sx={{
-                      background:
-                        "linear-gradient(135deg, #094252 0%, #176d74 54%, #2ec4b6 100%)",
+                      backgroundColor: "#094252",
                       color: "white",
                       gap: { xs: 1.25, sm: 2 },
                       padding: { xs: 1.25, sm: 2.5 },
@@ -389,7 +388,7 @@ const Fin = () => {
                         sx={{
                           alignItems: "center",
                           backgroundColor: "rgba(255, 255, 255, 0.16)",
-                          borderRadius: 2,
+                          borderRadius: 0,
                           display: "flex",
                           height: { xs: 36, sm: 44 },
                           justifyContent: "center",
@@ -427,7 +426,7 @@ const Fin = () => {
                       <Box
                         sx={{
                           backgroundColor: "rgba(255, 255, 255, 0.14)",
-                          borderRadius: 2,
+                          borderRadius: 0,
                           flex: { xs: 1, sm: "0 0 auto" },
                           minWidth: { xs: 0, sm: 220 },
                           padding: { xs: "0.55rem 0.7rem", sm: "0.9rem 1rem" },
@@ -465,7 +464,7 @@ const Fin = () => {
                         }
                         sx={{
                           backgroundColor: "rgba(255, 255, 255, 0.14)",
-                          borderRadius: 2,
+                          borderRadius: 0,
                           color: "white",
                           flex: "0 0 auto",
                           height: { xs: 36, sm: 44 },
@@ -500,7 +499,7 @@ const Fin = () => {
 	                  elevation={0}
 	                  sx={{
 		                    backgroundColor: "#fbfefe",
-	                    borderRadius: 2,
+	                    borderRadius: 0,
 	                    boxShadow: {
                         xs: "0 4px 12px rgba(9, 66, 82, 0.04)",
                         sm: "0 8px 22px rgba(9, 66, 82, 0.05)",
@@ -524,7 +523,7 @@ const Fin = () => {
                           sx={{
                             alignItems: "center",
 	                            backgroundColor: "#f8fbfc",
-                            borderRadius: 2,
+                            borderRadius: 0,
                             color: "#094252",
                             display: "flex",
                             height: { xs: 34, sm: 42 },
@@ -559,7 +558,7 @@ const Fin = () => {
                         <Box
                           sx={{
 	                            backgroundColor: "#f4fbf8",
-                            borderRadius: 2,
+                            borderRadius: 0,
                             padding: { xs: "0.55rem 0.7rem", sm: "0.75rem 1rem" },
                           }}
                         >
@@ -588,7 +587,7 @@ const Fin = () => {
                           sx={{
 	                            backgroundColor: "#f8fbfc",
                             border: "none",
-                            borderRadius: 2,
+                            borderRadius: 0,
                             color: "#094252",
                             height: { xs: 34, sm: 40 },
                             width: { xs: 34, sm: 40 },
@@ -640,7 +639,7 @@ const Fin = () => {
                 variant="outlined"
                 sx={{
                   backgroundColor: "#f8fbfc",
-                  borderRadius: 2,
+                  borderRadius: 0,
                   boxShadow: {
                     xs: "0 6px 18px rgba(9, 66, 82, 0.06)",
                     sm: "0 10px 28px rgba(9, 66, 82, 0.08)",
@@ -654,8 +653,7 @@ const Fin = () => {
                     alignItems={{ xs: "flex-start", sm: "center" }}
                     justifyContent="space-between"
                     sx={{
-                      background:
-                        "linear-gradient(135deg, #094252 0%, #176d74 54%, #2ec4b6 100%)",
+                      backgroundColor: "#094252",
                       color: "white",
                       gap: { xs: 1.25, sm: 2 },
                       padding: { xs: 1.25, sm: 2.5 },
@@ -666,7 +664,7 @@ const Fin = () => {
                         sx={{
                           alignItems: "center",
                           backgroundColor: "rgba(255, 255, 255, 0.16)",
-                          borderRadius: 2,
+                          borderRadius: 0,
                           display: "flex",
                           height: { xs: 36, sm: 44 },
                           justifyContent: "center",
@@ -704,7 +702,7 @@ const Fin = () => {
                       <Box
                         sx={{
                           backgroundColor: "rgba(255, 255, 255, 0.14)",
-                          borderRadius: 2,
+                          borderRadius: 0,
                           flex: { xs: 1, sm: "0 0 auto" },
                           minWidth: { xs: 0, sm: 220 },
                           padding: { xs: "0.55rem 0.7rem", sm: "0.9rem 1rem" },
@@ -742,7 +740,7 @@ const Fin = () => {
                         }
                         sx={{
                           backgroundColor: "rgba(255, 255, 255, 0.14)",
-                          borderRadius: 2,
+                          borderRadius: 0,
                           color: "white",
                           flex: "0 0 auto",
                           height: { xs: 36, sm: 44 },
@@ -780,7 +778,7 @@ const Fin = () => {
                             <Box
                               sx={{
                                 backgroundColor: "#ffffff",
-                                borderRadius: 2,
+                                borderRadius: 0,
                                 boxShadow:
                                   {
                                     xs: "0 4px 12px rgba(9, 66, 82, 0.04)",
@@ -821,7 +819,7 @@ const Fin = () => {
                                   sx={{
                                     alignItems: "center",
                                     backgroundColor: `${accentColor}1f`,
-                                    borderRadius: 2,
+                                    borderRadius: 0,
                                     color: accentColor,
                                     display: "flex",
                                     height: { xs: 32, sm: 38 },
@@ -845,7 +843,7 @@ const Fin = () => {
                               <Box
                                 sx={{
                                   backgroundColor: "#e8f1f3",
-                                  borderRadius: 999,
+                                  borderRadius: 0,
                                   height: 8,
                                   marginTop: { xs: 1, sm: 1.5 },
                                   overflow: "hidden",
@@ -880,7 +878,7 @@ const Fin = () => {
                                   sx={{
                                     backgroundColor: "#fff8eb",
                                     border: "1px solid #f4ddb3",
-                                    borderRadius: 2,
+                                    borderRadius: 0,
                                     color: "#7a3f00",
                                     gap: 0.75,
                                     marginTop: { xs: 1, sm: 1.5 },
