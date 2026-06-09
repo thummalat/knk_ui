@@ -247,7 +247,7 @@ const Fin = () => {
       >
         {showFinDetails && data.length > 0 && (
           <>
-            <Grid size={12} sx={{ display: { xs: "none", md: "block" } }}>
+            <Grid size={12}>
               <Box
                 sx={{
                   backgroundColor: "white",

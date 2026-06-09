@@ -55,9 +55,9 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
             Amount Owed
           </Typography>
           <Stack
-            direction={{ xs: "column", sm: "row" }}
-            alignItems={{ xs: "flex-start", sm: "center" }}
-            sx={{ gap: { xs: 0.5, sm: 1.5 }, marginTop: { xs: 0.15, sm: 0.25 } }}
+            direction="row"
+            alignItems="center"
+            sx={{ marginTop: { xs: 0.15, sm: 0.25 } }}
           >
             <Typography
               sx={{
@@ -68,43 +68,6 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
             >
               {formatCurrency(info.amountOwed)}
             </Typography>
-            <Stack
-              direction="row"
-              alignItems="center"
-              sx={{
-                backgroundColor: "#f3f8fa",
-                borderRadius: 0,
-                color: "#4b646a",
-                gap: 0.6,
-                padding: { xs: "0.35rem 0.55rem", sm: "0.4rem 0.65rem" },
-              }}
-            >
-              <CalendarMonthOutlinedIcon sx={{ color: "#176d74", fontSize: 18 }} />
-              <Box>
-                <Typography
-                  sx={{
-                    color: "#6b7d82",
-                    fontSize: { xs: "0.58rem", sm: "0.62rem" },
-                    fontWeight: 800,
-                    lineHeight: 1,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Borrowed Date
-                </Typography>
-                <Typography
-                  sx={{
-                    color: "#094252",
-                    fontSize: { xs: "0.78rem", sm: "0.84rem" },
-                    fontWeight: 800,
-                    lineHeight: 1.25,
-                    marginTop: 0.25,
-                  }}
-                >
-                  {info.dateBorrowed ? formatDate(info.dateBorrowed) : "N/A"}
-                </Typography>
-              </Box>
-            </Stack>
           </Stack>
         </Box>
         <Box
@@ -128,6 +91,11 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
             icon: <PercentOutlinedIcon fontSize="small" />,
             label: "Interest",
             value: `${info.interest}%`,
+          },
+          {
+            icon: <CalendarMonthOutlinedIcon fontSize="small" />,
+            label: "Borrowed Date",
+            value: info.dateBorrowed ? formatDate(info.dateBorrowed) : "N/A",
           },
           {
             icon: <TimelapseOutlinedIcon fontSize="small" />,
