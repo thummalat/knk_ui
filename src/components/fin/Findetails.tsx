@@ -25,7 +25,7 @@ import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
 import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
 import { PaymentInfo } from "./data/fin_data";
-import { formatCurrency, formatDate } from "./utils";
+import { dateTime, formatCurrency, formatDate } from "./utils";
 import { useState } from "react";
 
 const Findetails = ({
@@ -41,10 +41,7 @@ const Findetails = ({
   const [showPayments, setShowPayments] = useState(false);
   const interestPayments = payments
     .filter((payment) => payment.paymentType?.toLowerCase() === "interest")
-    .sort(
-      (a, b) =>
-        b.dateOfPayment.getTime() - a.dateOfPayment.getTime(),
-    );
+    .sort((a, b) => dateTime(b.dateOfPayment) - dateTime(a.dateOfPayment));
 
   return (
     <>
@@ -229,7 +226,7 @@ const Findetails = ({
                     {interestPayments.map((payment, index) => (
                       <TableRow
                         hover
-                        key={`${payment.dateOfPayment.toISOString()}-${index}`}
+                        key={`${dateTime(payment.dateOfPayment)}-${index}`}
                       >
                         <TableCell>
                           <Box
