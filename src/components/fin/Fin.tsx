@@ -362,7 +362,7 @@ const Fin = () => {
               <Card
                 variant="outlined"
                 sx={{
-                  backgroundColor: "#f8fbfc",
+                  backgroundColor: "#eef7f1",
                   borderRadius: 0,
                   boxShadow: {
                     xs: "0 6px 18px rgba(9, 66, 82, 0.06)",
@@ -377,7 +377,7 @@ const Fin = () => {
                     alignItems={{ xs: "flex-start", sm: "center" }}
                     justifyContent="space-between"
                     sx={{
-                      backgroundColor: "#094252",
+                      backgroundColor: "#185c37",
                       color: "white",
                       gap: { xs: 1.25, sm: 2 },
                       padding: { xs: 1.25, sm: 2.5 },
@@ -487,7 +487,7 @@ const Fin = () => {
                     timeout="auto"
                     unmountOnExit
                   >
-                    <Box sx={{ backgroundColor: "#eef6f7", padding: { xs: 1, sm: 2 } }}>
+                    <Box sx={{ backgroundColor: "#eef7f1", padding: { xs: 1, sm: 2 } }}>
                       <Grid container spacing={{ xs: 1, sm: 1.5 }}>
                         {data.map((d) => {
                           const isCollapsed =
@@ -638,7 +638,7 @@ const Fin = () => {
               <Card
                 variant="outlined"
                 sx={{
-                  backgroundColor: "#f8fbfc",
+                  backgroundColor: "#f1f4f8",
                   borderRadius: 0,
                   boxShadow: {
                     xs: "0 6px 18px rgba(9, 66, 82, 0.06)",
@@ -653,7 +653,7 @@ const Fin = () => {
                     alignItems={{ xs: "flex-start", sm: "center" }}
                     justifyContent="space-between"
                     sx={{
-                      backgroundColor: "#094252",
+                      backgroundColor: "#243b53",
                       color: "white",
                       gap: { xs: 1.25, sm: 2 },
                       padding: { xs: 1.25, sm: 2.5 },
@@ -763,7 +763,7 @@ const Fin = () => {
                     timeout="auto"
                     unmountOnExit
                   >
-                    <Box sx={{ backgroundColor: "#f7f9fb", padding: { xs: 1, sm: 2 } }}>
+                    <Box sx={{ backgroundColor: "#f1f4f8", padding: { xs: 1, sm: 2 } }}>
                       <Grid container spacing={{ xs: 1, sm: 2 }}>
                       {otherFinData.map((investment, index) => {
                         const allocation =
