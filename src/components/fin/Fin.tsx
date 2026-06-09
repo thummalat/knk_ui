@@ -119,9 +119,9 @@ const Fin = () => {
       sx={{
         background: "#f3f8fa",
         border: "1px solid #d7e8ec",
-        borderRadius: 3,
+        borderRadius: { xs: 2, sm: 3 },
         boxShadow: "0 18px 50px rgba(9, 66, 82, 0.09)",
-        marginTop: "1rem",
+        marginTop: { xs: "0.75rem", sm: "1rem" },
         overflow: "hidden",
       }}
     >
@@ -130,27 +130,32 @@ const Fin = () => {
           background:
             "linear-gradient(135deg, #094252 0%, #176d74 52%, #2ec4b6 100%)",
           color: "white",
-          padding: { xs: 2.5, sm: 3 },
+          padding: { xs: 1.5, sm: 3 },
         }}
       >
         <Stack
           direction={{ xs: "column", sm: "row" }}
           alignItems={{ xs: "flex-start", sm: "center" }}
           justifyContent="space-between"
-          sx={{ gap: 2 }}
+          sx={{ gap: { xs: 1, sm: 2 } }}
         >
           <Box>
             <Typography
               variant="h5"
-              sx={{ fontWeight: 800, letterSpacing: 0, lineHeight: 1.15 }}
+              sx={{
+                fontSize: { xs: "1.3rem", sm: "1.5rem" },
+                fontWeight: 800,
+                letterSpacing: 0,
+                lineHeight: 1.15,
+              }}
             >
               Financial Details
             </Typography>
             <Typography
               sx={{
                 color: "rgba(255, 255, 255, 0.78)",
-                fontSize: "0.95rem",
-                marginTop: 0.75,
+                fontSize: { xs: "0.82rem", sm: "0.95rem" },
+                marginTop: { xs: 0.35, sm: 0.75 },
               }}
             >
               Lending, and long-hold assets
@@ -163,8 +168,8 @@ const Fin = () => {
               border: "1px solid rgba(255, 255, 255, 0.24)",
               borderRadius: 2,
               display: "flex",
-              gap: 1,
-              padding: "0.75rem 1rem",
+              gap: 0.75,
+              padding: { xs: "0.55rem 0.7rem", sm: "0.75rem 1rem" },
             }}
           >
             <SavingsOutlinedIcon fontSize="small" />
@@ -178,8 +183,8 @@ const Fin = () => {
       </Box>
       <Grid
         container
-        spacing={3}
-        sx={{ padding: { xs: "1rem", sm: "1.25rem" }, justifyContent: "center" }}
+        spacing={{ xs: 1.25, sm: 3 }}
+        sx={{ padding: { xs: "0.75rem", sm: "1.25rem" }, justifyContent: "center" }}
       >
         <Grid size={12}>
           <Box
@@ -188,16 +193,16 @@ const Fin = () => {
               border: "1px solid #dce9ec",
               borderRadius: 2,
               boxShadow: "0 8px 24px rgba(9, 66, 82, 0.05)",
-              padding: 2,
+              padding: { xs: 1, sm: 2 },
             }}
           >
             <Stack
               direction={{ xs: "column", sm: "row" }}
               alignItems={{ xs: "stretch", sm: "center" }}
               justifyContent="space-between"
-              sx={{ gap: 2 }}
+              sx={{ gap: { xs: 1, sm: 2 } }}
             >
-              <Stack direction="row" alignItems="center" sx={{ gap: 1.25 }}>
+              <Stack direction="row" alignItems="center" sx={{ gap: { xs: 1, sm: 1.25 } }}>
                 <Box
                   sx={{
                     alignItems: "center",
@@ -205,9 +210,9 @@ const Fin = () => {
                     borderRadius: 2,
                     color: "#094252",
                     display: "flex",
-                    height: 40,
+                    height: { xs: 34, sm: 40 },
                     justifyContent: "center",
-                    width: 40,
+                    width: { xs: 34, sm: 40 },
                   }}
                 >
                   <LockOutlinedIcon fontSize="small" />
@@ -377,7 +382,10 @@ const Fin = () => {
                 sx={{
                   backgroundColor: "#f8fbfc",
                   borderRadius: 2,
-                  boxShadow: "0 10px 28px rgba(9, 66, 82, 0.08)",
+                  boxShadow: {
+                    xs: "0 6px 18px rgba(9, 66, 82, 0.06)",
+                    sm: "0 10px 28px rgba(9, 66, 82, 0.08)",
+                  },
                   overflow: "hidden",
                 }}
               >
@@ -390,20 +398,20 @@ const Fin = () => {
                       background:
                         "linear-gradient(135deg, #094252 0%, #176d74 54%, #2ec4b6 100%)",
                       color: "white",
-                      gap: 2,
-                      padding: 2.5,
+                      gap: { xs: 1.25, sm: 2 },
+                      padding: { xs: 1.25, sm: 2.5 },
                     }}
                   >
-                    <Stack direction="row" alignItems="center" sx={{ gap: 1.5 }}>
+                    <Stack direction="row" alignItems="center" sx={{ gap: { xs: 1, sm: 1.5 } }}>
                       <Box
                         sx={{
                           alignItems: "center",
                           backgroundColor: "rgba(255, 255, 255, 0.16)",
                           borderRadius: 2,
                           display: "flex",
-                          height: 44,
+                          height: { xs: 36, sm: 44 },
                           justifyContent: "center",
-                          width: 44,
+                          width: { xs: 36, sm: 44 },
                         }}
                       >
                         <PaymentsOutlinedIcon />
@@ -411,7 +419,7 @@ const Fin = () => {
                       <Box>
                         <Typography
                           sx={{
-                            fontSize: "1.35rem",
+                            fontSize: { xs: "1.05rem", sm: "1.35rem" },
                             fontWeight: 700,
                             lineHeight: 1.15,
                           }}
@@ -421,8 +429,8 @@ const Fin = () => {
                         <Typography
                           sx={{
                             color: "rgba(255, 255, 255, 0.78)",
-                            fontSize: "0.9rem",
-                            marginTop: 0.35,
+                            fontSize: { xs: "0.76rem", sm: "0.9rem" },
+                            marginTop: { xs: 0.2, sm: 0.35 },
                           }}
                         >
                           Borrowers and active loan details
@@ -440,7 +448,7 @@ const Fin = () => {
                           borderRadius: 2,
                           flex: { xs: 1, sm: "0 0 auto" },
                           minWidth: { xs: 0, sm: 220 },
-                          padding: "0.9rem 1rem",
+                          padding: { xs: "0.55rem 0.7rem", sm: "0.9rem 1rem" },
                         }}
                       >
                         <Typography
@@ -453,7 +461,12 @@ const Fin = () => {
                         >
                           Total Principal
                         </Typography>
-                        <Typography sx={{ fontSize: "1.25rem", fontWeight: 800 }}>
+                        <Typography
+                          sx={{
+                            fontSize: { xs: "0.95rem", sm: "1.25rem" },
+                            fontWeight: 800,
+                          }}
+                        >
                           {formatCurrency(sumAmount)}
                         </Typography>
                       </Box>
@@ -473,8 +486,8 @@ const Fin = () => {
                           borderRadius: 2,
                           color: "white",
                           flex: "0 0 auto",
-                          height: 44,
-                          width: 44,
+                          height: { xs: 36, sm: 44 },
+                          width: { xs: 36, sm: 44 },
                           "&:hover": {
                             backgroundColor: "rgba(255, 255, 255, 0.22)",
                           },
@@ -493,8 +506,8 @@ const Fin = () => {
                     timeout="auto"
                     unmountOnExit
                   >
-                    <Box sx={{ backgroundColor: "#eef6f7", padding: 2 }}>
-                      <Grid container spacing={1.5}>
+                    <Box sx={{ backgroundColor: "#eef6f7", padding: { xs: 1, sm: 2 } }}>
+                      <Grid container spacing={{ xs: 1, sm: 1.5 }}>
                         {data.map((d) => {
                           const isCollapsed =
                             collapsedLendingTiles[d.name] || false;
@@ -506,7 +519,10 @@ const Fin = () => {
 	                  sx={{
 		                    backgroundColor: "#fbfefe",
 	                    borderRadius: 2,
-	                    boxShadow: "0 8px 22px rgba(9, 66, 82, 0.05)",
+	                    boxShadow: {
+                        xs: "0 4px 12px rgba(9, 66, 82, 0.04)",
+                        sm: "0 8px 22px rgba(9, 66, 82, 0.05)",
+                      },
 	                    overflow: "hidden",
 	                  }}
                 >
@@ -517,11 +533,11 @@ const Fin = () => {
                       justifyContent="space-between"
                       sx={{
 	                        backgroundColor: "#e7f1f3",
-                        gap: 2,
-                        padding: 2,
+                        gap: { xs: 1, sm: 2 },
+                        padding: { xs: 1, sm: 2 },
                       }}
                     >
-                      <Stack direction="row" alignItems="center" sx={{ gap: 1.25 }}>
+                      <Stack direction="row" alignItems="center" sx={{ gap: { xs: 1, sm: 1.25 } }}>
                         <Box
                           sx={{
                             alignItems: "center",
@@ -529,9 +545,9 @@ const Fin = () => {
                             borderRadius: 2,
                             color: "#094252",
                             display: "flex",
-                            height: 42,
+                            height: { xs: 34, sm: 42 },
                             justifyContent: "center",
-                            width: 42,
+                            width: { xs: 34, sm: 42 },
                           }}
                         >
                           <PersonOutlineOutlinedIcon />
@@ -540,7 +556,7 @@ const Fin = () => {
                           <Typography
                             sx={{
                               color: "#094252",
-                              fontSize: "1.25rem",
+                              fontSize: { xs: "1rem", sm: "1.25rem" },
                               fontWeight: 800,
                               lineHeight: 1.15,
                             }}
@@ -556,13 +572,13 @@ const Fin = () => {
                       <Stack
                         direction={{ xs: "column", sm: "row" }}
                         alignItems={{ xs: "stretch", sm: "center" }}
-                        sx={{ gap: 1 }}
+                        sx={{ gap: { xs: 0.75, sm: 1 } }}
                       >
                         <Box
                           sx={{
 	                            backgroundColor: "#f4fbf8",
                             borderRadius: 2,
-                            padding: "0.75rem 1rem",
+                            padding: { xs: "0.55rem 0.7rem", sm: "0.75rem 1rem" },
                           }}
                         >
                           <Typography
@@ -592,8 +608,8 @@ const Fin = () => {
                             border: "none",
                             borderRadius: 2,
                             color: "#094252",
-                            height: 40,
-                            width: 40,
+                            height: { xs: 34, sm: 40 },
+                            width: { xs: 34, sm: 40 },
                             "&:hover": {
 	                              backgroundColor: "#edf8f5",
                             },
@@ -611,8 +627,8 @@ const Fin = () => {
                     <Collapse in={!isCollapsed} timeout="auto" unmountOnExit>
 	                      <Grid
 	                        container
-	                        sx={{ backgroundColor: "#f8fbfc", padding: 2 }}
-	                        spacing={2}
+	                        sx={{ backgroundColor: "#f8fbfc", padding: { xs: 1, sm: 2 } }}
+	                        spacing={{ xs: 1, sm: 2 }}
 	                      >
                         <Grid size={12}>
                           <Findetails
@@ -643,7 +659,10 @@ const Fin = () => {
                 sx={{
                   backgroundColor: "#f8fbfc",
                   borderRadius: 2,
-                  boxShadow: "0 10px 28px rgba(9, 66, 82, 0.08)",
+                  boxShadow: {
+                    xs: "0 6px 18px rgba(9, 66, 82, 0.06)",
+                    sm: "0 10px 28px rgba(9, 66, 82, 0.08)",
+                  },
                   overflow: "hidden",
                 }}
               >
@@ -656,20 +675,20 @@ const Fin = () => {
                       background:
                         "linear-gradient(135deg, #094252 0%, #176d74 54%, #2ec4b6 100%)",
                       color: "white",
-                      gap: 2,
-                      padding: 2.5,
+                      gap: { xs: 1.25, sm: 2 },
+                      padding: { xs: 1.25, sm: 2.5 },
                     }}
                   >
-                    <Stack direction="row" alignItems="center" sx={{ gap: 1.5 }}>
+                    <Stack direction="row" alignItems="center" sx={{ gap: { xs: 1, sm: 1.5 } }}>
                       <Box
                         sx={{
                           alignItems: "center",
                           backgroundColor: "rgba(255, 255, 255, 0.16)",
                           borderRadius: 2,
                           display: "flex",
-                          height: 44,
+                          height: { xs: 36, sm: 44 },
                           justifyContent: "center",
-                          width: 44,
+                          width: { xs: 36, sm: 44 },
                         }}
                       >
                         <TrendingUpOutlinedIcon />
@@ -677,7 +696,7 @@ const Fin = () => {
                       <Box>
                         <Typography
                           sx={{
-                            fontSize: "1.35rem",
+                            fontSize: { xs: "1.05rem", sm: "1.35rem" },
                             fontWeight: 700,
                             lineHeight: 1.15,
                           }}
@@ -687,8 +706,8 @@ const Fin = () => {
                         <Typography
                           sx={{
                             color: "rgba(255, 255, 255, 0.78)",
-                            fontSize: "0.9rem",
-                            marginTop: 0.35,
+                            fontSize: { xs: "0.76rem", sm: "0.9rem" },
+                            marginTop: { xs: 0.2, sm: 0.35 },
                           }}
                         >
                           Gold, land, and long-hold assets
@@ -706,7 +725,7 @@ const Fin = () => {
                           borderRadius: 2,
                           flex: { xs: 1, sm: "0 0 auto" },
                           minWidth: { xs: 0, sm: 220 },
-                          padding: "0.9rem 1rem",
+                          padding: { xs: "0.55rem 0.7rem", sm: "0.9rem 1rem" },
                         }}
                       >
                         <Typography
@@ -719,7 +738,12 @@ const Fin = () => {
                         >
                           Total Invested
                         </Typography>
-                        <Typography sx={{ fontSize: "1.25rem", fontWeight: 800 }}>
+                        <Typography
+                          sx={{
+                            fontSize: { xs: "0.95rem", sm: "1.25rem" },
+                            fontWeight: 800,
+                          }}
+                        >
                           {formatCurrency(totalOtherInvestments)}
                         </Typography>
                       </Box>
@@ -739,8 +763,8 @@ const Fin = () => {
                           borderRadius: 2,
                           color: "white",
                           flex: "0 0 auto",
-                          height: 44,
-                          width: 44,
+                          height: { xs: 36, sm: 44 },
+                          width: { xs: 36, sm: 44 },
                           "&:hover": {
                             backgroundColor: "rgba(255, 255, 255, 0.22)",
                           },
@@ -759,8 +783,8 @@ const Fin = () => {
                     timeout="auto"
                     unmountOnExit
                   >
-                    <Box sx={{ backgroundColor: "#f7f9fb", padding: 2 }}>
-                      <Grid container spacing={2}>
+                    <Box sx={{ backgroundColor: "#f7f9fb", padding: { xs: 1, sm: 2 } }}>
+                      <Grid container spacing={{ xs: 1, sm: 2 }}>
                       {otherFinData.map((investment, index) => {
                         const allocation =
                           (investment.amountInvested / totalOtherInvestments) *
@@ -776,23 +800,26 @@ const Fin = () => {
                                 backgroundColor: "#ffffff",
                                 borderRadius: 2,
                                 boxShadow:
-                                  "0 8px 22px rgba(9, 66, 82, 0.06)",
+                                  {
+                                    xs: "0 4px 12px rgba(9, 66, 82, 0.04)",
+                                    sm: "0 8px 22px rgba(9, 66, 82, 0.06)",
+                                  },
                                 height: "100%",
                                 overflow: "hidden",
-                                padding: 2,
+                                padding: { xs: 1.25, sm: 2 },
                               }}
                             >
                               <Stack
                                 direction="row"
                                 alignItems="flex-start"
                                 justifyContent="space-between"
-                                sx={{ gap: 1.5 }}
+                                sx={{ gap: { xs: 1, sm: 1.5 } }}
                               >
                                 <Box>
                                   <Typography
                                     sx={{
                                       color: "#094252",
-                                      fontSize: "1.05rem",
+                                      fontSize: { xs: "0.95rem", sm: "1.05rem" },
                                       fontWeight: 800,
                                     }}
                                   >
@@ -800,8 +827,8 @@ const Fin = () => {
                                   </Typography>
                                   <Typography
                                     sx={{
-                                      color: "#566b70",
-                                      fontSize: "0.85rem",
+                                     color: "#566b70",
+                                      fontSize: { xs: "0.76rem", sm: "0.85rem" },
                                       marginTop: 0.35,
                                     }}
                                   >
@@ -815,9 +842,9 @@ const Fin = () => {
                                     borderRadius: 2,
                                     color: accentColor,
                                     display: "flex",
-                                    height: 38,
+                                    height: { xs: 32, sm: 38 },
                                     justifyContent: "center",
-                                    width: 38,
+                                    width: { xs: 32, sm: 38 },
                                   }}
                                 >
                                   <AccountBalanceWalletOutlinedIcon fontSize="small" />
@@ -826,9 +853,9 @@ const Fin = () => {
                               <Typography
                                 sx={{
                                   color: "#03894b",
-                                  fontSize: "1.35rem",
+                                  fontSize: { xs: "1.05rem", sm: "1.35rem" },
                                   fontWeight: 800,
-                                  marginTop: 2,
+                                  marginTop: { xs: 1, sm: 2 },
                                 }}
                               >
                                 {formatCurrency(investment.amountInvested)}
@@ -838,7 +865,7 @@ const Fin = () => {
                                   backgroundColor: "#e8f1f3",
                                   borderRadius: 999,
                                   height: 8,
-                                  marginTop: 1.5,
+                                  marginTop: { xs: 1, sm: 1.5 },
                                   overflow: "hidden",
                                 }}
                               >
@@ -856,7 +883,7 @@ const Fin = () => {
                                 sx={{
                                   color: "#4b646a",
                                   gap: 0.75,
-                                  marginTop: 1.5,
+                                  marginTop: { xs: 1, sm: 1.5 },
                                 }}
                               >
                                 <CalendarMonthOutlinedIcon fontSize="small" />
@@ -873,9 +900,9 @@ const Fin = () => {
                                     border: "1px solid #f4ddb3",
                                     borderRadius: 2,
                                     color: "#7a3f00",
-                                    gap: 1,
-                                    marginTop: 1.5,
-                                    padding: 1.25,
+                                    gap: 0.75,
+                                    marginTop: { xs: 1, sm: 1.5 },
+                                    padding: { xs: 1, sm: 1.25 },
                                   }}
                                 >
                                   <NotesOutlinedIcon fontSize="small" />

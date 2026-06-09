@@ -76,11 +76,14 @@ const Findetails = ({
           sx={{
             backgroundColor: "#ffffff",
             borderRadius: 2,
-            boxShadow: "0 8px 22px rgba(9, 66, 82, 0.05)",
-            padding: 1.5,
+            boxShadow: {
+              xs: "0 4px 12px rgba(9, 66, 82, 0.04)",
+              sm: "0 8px 22px rgba(9, 66, 82, 0.05)",
+            },
+            padding: { xs: 1, sm: 1.5 },
           }}
         >
-          <Grid container spacing={1.5}>
+          <Grid container spacing={{ xs: 1, sm: 1.5 }}>
             {[
               {
                 icon: <TrendingUpOutlinedIcon fontSize="small" />,
@@ -111,7 +114,7 @@ const Findetails = ({
                     borderRadius: 2,
                     cursor: item.isClickable ? "pointer" : "default",
                     height: "100%",
-                    padding: 1.25,
+                    padding: { xs: 1, sm: 1.25 },
                     transition: "transform 160ms ease, box-shadow 160ms ease",
                     "&:hover": item.isClickable
                       ? {
@@ -124,7 +127,11 @@ const Findetails = ({
                   <Stack
                     direction="row"
                     alignItems="center"
-                    sx={{ color: "#176d74", gap: 0.75, marginBottom: 0.75 }}
+                    sx={{
+                      color: "#176d74",
+                      gap: 0.75,
+                      marginBottom: { xs: 0.45, sm: 0.75 },
+                    }}
                   >
                     {item.icon}
                     <Typography

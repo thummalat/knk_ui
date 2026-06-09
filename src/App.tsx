@@ -13,7 +13,8 @@ const App = () => {
       <Header />
       <Container
         sx={{
-          paddingBottom: "1rem",
+          paddingBottom: { xs: "0.75rem", sm: "1rem" },
+          px: { xs: 1, sm: 3 },
         }}
       >
         <Routes>

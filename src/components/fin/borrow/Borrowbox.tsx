@@ -33,16 +33,19 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
       sx={{
         backgroundColor: "#ffffff",
         borderRadius: 2,
-        boxShadow: "0 8px 22px rgba(9, 66, 82, 0.05)",
+        boxShadow: {
+          xs: "0 4px 12px rgba(9, 66, 82, 0.04)",
+          sm: "0 8px 22px rgba(9, 66, 82, 0.05)",
+        },
         fontWeight: 500,
-        padding: "1rem",
+        padding: { xs: "0.9rem", sm: "1rem" },
       }}
     >
       <Stack
         direction="row"
         alignItems="flex-start"
         justifyContent="space-between"
-        sx={{ gap: 1.5 }}
+        sx={{ gap: { xs: 1, sm: 1.5 } }}
       >
         <Box>
           <Typography
@@ -54,9 +57,9 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
           <Typography
             sx={{
               color: "#094252",
-              fontSize: "1.35rem",
+              fontSize: { xs: "1.1rem", sm: "1.35rem" },
               fontWeight: 900,
-              marginTop: 0.25,
+              marginTop: { xs: 0.15, sm: 0.25 },
             }}
           >
             {formatCurrency(info.amountOwed)}
@@ -69,15 +72,15 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
             borderRadius: 2,
             color: "#176d74",
             display: "flex",
-            height: 40,
+            height: { xs: 34, sm: 40 },
             justifyContent: "center",
-            width: 40,
+            width: { xs: 34, sm: 40 },
           }}
         >
           <PaymentsOutlinedIcon fontSize="small" />
         </Box>
       </Stack>
-      <Grid container spacing={1.25} sx={{ marginTop: 2 }}>
+      <Grid container spacing={{ xs: 0.75, sm: 1.25 }} sx={{ marginTop: { xs: 1, sm: 2 } }}>
         {[
           {
             icon: <PercentOutlinedIcon fontSize="small" />,
@@ -108,8 +111,8 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
                 backgroundColor: "#f3f8fa",
                 borderRadius: 2,
                 color: "#4b646a",
-                gap: 1,
-                padding: 1,
+                gap: 0.75,
+                padding: { xs: 0.75, sm: 1 },
               }}
             >
               <Box sx={{ color: "#176d74", display: "flex" }}>{item.icon}</Box>
@@ -117,14 +120,20 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
                 <Typography
                   sx={{
                     color: "#6b7d82",
-                    fontSize: "0.72rem",
+                    fontSize: { xs: "0.66rem", sm: "0.72rem" },
                     fontWeight: 800,
                     textTransform: "uppercase",
                   }}
                 >
                   {item.label}
                 </Typography>
-                <Typography sx={{ color: "#094252", fontSize: "0.88rem", fontWeight: 700 }}>
+                <Typography
+                  sx={{
+                    color: "#094252",
+                    fontSize: { xs: "0.8rem", sm: "0.88rem" },
+                    fontWeight: 700,
+                  }}
+                >
                   {item.value}
                 </Typography>
               </Box>
@@ -136,8 +145,8 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
         sx={{
           background: "#edf8f5",
           borderRadius: 2,
-          marginTop: "1rem",
-          padding: "1rem",
+          marginTop: { xs: "0.75rem", sm: "1rem" },
+          padding: { xs: "0.8rem", sm: "1rem" },
         }}
       >
         <Typography
@@ -146,7 +155,7 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
         >
           Interest Performance
         </Typography>
-        <Grid container spacing={1.25} sx={{ marginTop: 0.75 }}>
+        <Grid container spacing={{ xs: 0.75, sm: 1.25 }} sx={{ marginTop: 0.75 }}>
           <Grid size={12}>
             <Typography sx={{ color: "#094252", fontWeight: 900 }}>
               Total Earned: {formatCurrency(info.interestEarned || 0)}
@@ -172,9 +181,9 @@ const Borrowbox = ({ info }: { info: InterestInfo }) => {
             backgroundColor: "#fff7e8",
             borderRadius: 2,
             color: "#7a3f00",
-            gap: 1,
-            marginTop: "1rem",
-            padding: 1.25,
+            gap: 0.75,
+            marginTop: { xs: "0.75rem", sm: "1rem" },
+            padding: { xs: 1, sm: 1.25 },
           }}
         >
           <NotesOutlinedIcon fontSize="small" />

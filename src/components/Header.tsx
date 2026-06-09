@@ -19,11 +19,11 @@ const Header = () => {
         <Toolbar
           sx={{
             justifyContent: "space-between",
-            minHeight: { xs: 72, sm: 82 },
-            paddingInline: { xs: 2, sm: 4 },
+            minHeight: { xs: 60, sm: 82 },
+            paddingInline: { xs: 1.25, sm: 4 },
           }}
         >
-          <Stack direction="row" alignItems="center" sx={{ gap: 1.5 }}>
+          <Stack direction="row" alignItems="center" sx={{ gap: { xs: 1, sm: 1.5 } }}>
             <Box
               sx={{
                 alignItems: "center",
@@ -32,12 +32,12 @@ const Header = () => {
                 borderRadius: 2,
                 color: "white",
                 display: "flex",
-                height: 46,
+                height: { xs: 38, sm: 46 },
                 justifyContent: "center",
-                width: 46,
+                width: { xs: 38, sm: 46 },
               }}
             >
-              <SavingsOutlinedIcon />
+              <SavingsOutlinedIcon fontSize="small" />
             </Box>
             <Box>
               <Typography
@@ -45,6 +45,7 @@ const Header = () => {
                 component="div"
                 sx={{
                   color: "#094252",
+                  fontSize: { xs: "1rem", sm: "1.25rem" },
                   fontWeight: 900,
                   lineHeight: 1.05,
                 }}
@@ -54,9 +55,9 @@ const Header = () => {
               <Typography
                 sx={{
                   color: "#5a7177",
-                  fontSize: "0.85rem",
+                  fontSize: { xs: "0.74rem", sm: "0.85rem" },
                   fontWeight: 600,
-                  marginTop: 0.4,
+                  marginTop: { xs: 0.2, sm: 0.4 },
                 }}
               >
                 Personal finance overview
