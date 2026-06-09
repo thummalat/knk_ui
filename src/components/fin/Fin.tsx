@@ -161,24 +161,83 @@ const Fin = () => {
               Lending, and long-hold assets
             </Typography>
           </Box>
-          <Box
-            sx={{
-              alignItems: "center",
-              backgroundColor: "rgba(255, 255, 255, 0.14)",
-              border: "1px solid rgba(255, 255, 255, 0.24)",
-              borderRadius: 2,
-              display: "flex",
-              gap: 0.75,
-              padding: { xs: "0.55rem 0.7rem", sm: "0.75rem 1rem" },
-            }}
-          >
-            <SavingsOutlinedIcon fontSize="small" />
-            <Typography sx={{ fontWeight: 700 }}>
-              {showFinDetails
-                ? formatCurrency(portfolioTotal)
-                : "Private overview"}
-            </Typography>
-          </Box>
+          {showFinDetails ? (
+            <Box
+              sx={{
+                alignItems: "center",
+                backgroundColor: "rgba(255, 255, 255, 0.14)",
+                border: "1px solid rgba(255, 255, 255, 0.24)",
+                borderRadius: 2,
+                display: "flex",
+                gap: 0.75,
+                padding: { xs: "0.55rem 0.7rem", sm: "0.75rem 1rem" },
+              }}
+            >
+              <SavingsOutlinedIcon fontSize="small" />
+              <Typography sx={{ fontWeight: 700 }}>
+                {formatCurrency(portfolioTotal)}
+              </Typography>
+            </Box>
+          ) : (
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              alignItems={{ xs: "stretch", sm: "center" }}
+              sx={{
+                backgroundColor: "white",
+                
+                border: "1px solid rgba(255, 255, 255, 0.24)",
+                borderRadius: 2,
+                gap: 1,
+                padding: { xs: "0.55rem", sm: "0.65rem" },
+                width: { xs: "100%", sm: "auto" },
+              }}
+            >
+              <TextField
+                type="password"
+                id="passcode"
+                value={passcode}
+                label="Passcode"
+                onChange={handlePasscodeChange}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    handleSubmit();
+                  }
+                }}
+                name="passcode"
+                size="small"
+                sx={{
+                  minWidth: { xs: "100%", sm: 190 },
+                  "& .MuiInputLabel-root": {
+                    color: "rgba(255, 255, 255, 0.76)",
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    backgroundColor: "rgba(255, 255, 255, 0.96)",
+                    borderRadius: 2,
+                  },
+                }}
+              />
+              <Button
+                variant="contained"
+                onClick={handleSubmit}
+                startIcon={<LockOutlinedIcon />}
+                sx={{
+                  backgroundColor: "white",
+                  borderRadius: 2,
+                  boxShadow: "none",
+                  color: "#094252",
+                  fontWeight: 800,
+                  minHeight: 40,
+                  paddingInline: 2,
+                  "&:hover": {
+                    backgroundColor: "#edf8f5",
+                    boxShadow: "none",
+                  },
+                }}
+              >
+                Unlock
+              </Button>
+            </Stack>
+          )}
         </Stack>
       </Box>
       <Grid
@@ -186,83 +245,6 @@ const Fin = () => {
         spacing={{ xs: 1.25, sm: 3 }}
         sx={{ padding: { xs: "0.75rem", sm: "1.25rem" }, justifyContent: "center" }}
       >
-        <Grid size={12}>
-          <Box
-            sx={{
-              backgroundColor: "white",
-              border: "1px solid #dce9ec",
-              borderRadius: 2,
-              boxShadow: "0 8px 24px rgba(9, 66, 82, 0.05)",
-              padding: { xs: 1, sm: 2 },
-            }}
-          >
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
-              alignItems={{ xs: "stretch", sm: "center" }}
-              justifyContent="space-between"
-              sx={{ gap: { xs: 1, sm: 2 } }}
-            >
-              <Stack direction="row" alignItems="center" sx={{ gap: { xs: 1, sm: 1.25 } }}>
-                <Box
-                  sx={{
-                    alignItems: "center",
-                    backgroundColor: "#eaf7f5",
-                    borderRadius: 2,
-                    color: "#094252",
-                    display: "flex",
-                    height: { xs: 34, sm: 40 },
-                    justifyContent: "center",
-                    width: { xs: 34, sm: 40 },
-                  }}
-                >
-                  <LockOutlinedIcon fontSize="small" />
-                </Box>
-                <Box>
-                  <Typography sx={{ color: "#094252", fontWeight: 800 }}>
-                    Secure Finance View
-                  </Typography>
-                  <Typography color="text.secondary" variant="body2">
-                    {showFinDetails ? "Unlocked" : "Enter passcode to unlock"}
-                  </Typography>
-                </Box>
-              </Stack>
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                alignItems={{ xs: "stretch", sm: "center" }}
-                sx={{ gap: 1 }}
-              >
-                <TextField
-                  type="password"
-                  id="passcode"
-                  value={passcode}
-                  label="Passcode"
-                  onChange={handlePasscodeChange}
-                  name="passcode"
-                  size="small"
-                  sx={{
-                    minWidth: { xs: "100%", sm: 220 },
-                    "& .MuiOutlinedInput-root": { borderRadius: 2 },
-                  }}
-                />
-                <Button
-                  variant="contained"
-                  onClick={handleSubmit}
-                  startIcon={<LockOutlinedIcon />}
-                  sx={{
-                    borderRadius: 2,
-                    boxShadow: "none",
-                    fontWeight: 700,
-                    minHeight: 40,
-                    paddingInline: 2,
-                  }}
-                >
-                  Unlock
-                </Button>
-              </Stack>
-            </Stack>
-          </Box>
-        </Grid>
-
         {showFinDetails && data.length > 0 && (
           <>
             <Grid size={12} sx={{ display: { xs: "none", md: "block" } }}>
