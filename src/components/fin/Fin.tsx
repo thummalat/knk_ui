@@ -17,54 +17,30 @@ import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDown
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import NotesOutlinedIcon from "@mui/icons-material/NotesOutlined";
+import OpenInNewOutlinedIcon from "@mui/icons-material/OpenInNewOutlined";
 import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import SavingsOutlinedIcon from "@mui/icons-material/SavingsOutlined";
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
 import { useState, useMemo } from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 import finData, { otherFinData, TFinData } from "./data/fin_data";
-import { daysFromToday, formatCurrency, formatDate } from "./utils";
+import {
+  calculatePersonFinData,
+  formatCurrency,
+  formatDate,
+  lenderSlug,
+} from "./utils";
 import Borrowbox from "./borrow/Borrowbox";
 import Findetails from "./Findetails";
 
 const calculateFinData = (finDetails: TFinData | null) => {
   if (!finDetails) return { data: [], sumAmount: 0 };
 
-  const DAYS_IN_YEAR = 365;
-
-  const data = Object.keys(finDetails).map((key) => {
-    const { interestInfo, paymentInfo, ...otherDetails } = finDetails[key];
-
-    const updatedInterestInfo = interestInfo.map((info) => ({
-      ...info,
-      interestEarned: Math.floor(
-        (info.amountOwed * info.interest * daysFromToday(info.dateBorrowed)) /
-          (100 * DAYS_IN_YEAR),
-      ),
-    }));
-
-    const principal = updatedInterestInfo.reduce(
-      (total, { amountOwed }) => total + amountOwed,
-      0,
-    );
-    const totalInterestedEarned = updatedInterestInfo.reduce(
-      (total, { interestEarned }) => total + interestEarned,
-      0,
-    );
-    const totalInterestedPaid = paymentInfo
-      .filter((p) => p.paymentType === "interest")
-      .reduce((total, { amountPaid }) => total + amountPaid, 0);
-
-    return {
-      paymentInfo,
-      interestInfo: updatedInterestInfo,
-      ...otherDetails,
-      principal,
-      totalInterestedEarned,
-      totalInterestedPaid,
-    };
-  });
+  const data = Object.keys(finDetails).map((key) =>
+    calculatePersonFinData(finDetails[key]),
+  );
 
   const sumAmount = data.reduce((total, { principal }) => total + principal, 0);
 
@@ -358,7 +334,7 @@ const Fin = () => {
                 )}
               </Box>
             </Grid>
-            <Grid size={12}>
+            <Grid size={12} sx={{ marginTop: { xs: 1.25, sm: 2 } }}>
               <Card
                 variant="outlined"
                 sx={{
@@ -577,6 +553,27 @@ const Fin = () => {
                             {formatCurrency(d.principal)}
                           </Typography>
                         </Box>
+                        <Button
+                          component={RouterLink}
+                          to={`/fin/lenders/${lenderSlug(d.name)}`}
+                          variant="outlined"
+                          startIcon={<OpenInNewOutlinedIcon />}
+                          sx={{
+                            backgroundColor: "#f8fbfc",
+                            borderColor: "#cfe2d7",
+                            borderRadius: 0,
+                            color: "#185c37",
+                            fontWeight: 800,
+                            minHeight: { xs: 34, sm: 40 },
+                            paddingInline: { xs: 1, sm: 1.5 },
+                            "&:hover": {
+                              backgroundColor: "#eef7f1",
+                              borderColor: "#a9cbb8",
+                            },
+                          }}
+                        >
+                          Statement
+                        </Button>
                         <IconButton
                           onClick={() => handleToggleLendingTile(d.name)}
                           aria-label={

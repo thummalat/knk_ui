@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Orders from "./components/orders/Orders";
 import Fin from "./components/fin/Fin";
+import LenderStatement from "./components/fin/LenderStatement";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/" element={<Fin />}></Route>
           {/* <Route path="/" element={<InventoryDetails />}></Route> */}
           <Route path="/orders" element={<Orders />}></Route>
+          <Route path="/fin/lenders/:lenderId" element={<LenderStatement />}></Route>
           <Route path="/fin" element={<Fin />}></Route>
         </Routes>
       </Container>

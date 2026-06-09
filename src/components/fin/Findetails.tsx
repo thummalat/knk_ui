@@ -32,12 +32,14 @@ const Findetails = ({
   total,
   paid,
   payments,
+  defaultShow = false,
 }: {
   total: number;
   paid: number;
   payments: PaymentInfo[];
+  defaultShow?: boolean;
 }) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(defaultShow);
   const [showPayments, setShowPayments] = useState(false);
   const interestPayments = payments
     .filter((payment) => payment.paymentType?.toLowerCase() === "interest")
